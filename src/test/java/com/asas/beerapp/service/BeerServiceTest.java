@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Sort;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +19,7 @@ import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 class BeerServiceTest {
-    
+
     @Mock
     private BeerRepository beerRepository;
 
@@ -30,7 +29,7 @@ class BeerServiceTest {
     @Test
     void shouldSelectAllBeers() {
         //given
-        given(beerRepository.findAll(Sort.by(Sort.Direction.ASC, "id"))).willReturn(List.of(new Beer(1),new Beer(2)));
+        given(beerRepository.findAll(Sort.by(Sort.Direction.ASC, "id"))).willReturn(List.of(new Beer(1), new Beer(2)));
 
         //when
         List<Beer> allBeers = beerService.selectAllBeers();
