@@ -3,7 +3,6 @@ package com.asas.beerapp.model;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,13 +15,13 @@ public class Beer implements Serializable {
     @NotBlank
     private String name;
 
-    private String tagline;
-
-    @NotNull
-    @Temporal(TemporalType.DATE)
-    private Date firstBrewed;
-
-    private String description;
+//    private String tagline;
+//
+//    @NotNull
+//    @Temporal(TemporalType.DATE)
+//    private Date firstBrewed;
+//
+//    private String description;
     private String imgUrl;
 
     @NotNull
@@ -35,17 +34,17 @@ public class Beer implements Serializable {
     @Max(value = 120, message = "Max IBU value should be 120.")
     private int ibu;
 
-    private float targetFg;
-    private float targetOg;
+//    private float targetFg;
+//    private float targetOg;
 
     @NotNull
     @DecimalMin(value = "0", message = "Min EBC value should be 0.")
     @DecimalMax(value = "100", message = "Max EBC value should be 100.")
     private float ebc;
 
-    private float srm;
-    private float ph;
-    private float attenuationLevel;
+//    private float srm;
+//    private float ph;
+//    private float attenuationLevel;
 
 //    private Volume volume;
 //    private Volume boilVolume;
@@ -79,30 +78,6 @@ public class Beer implements Serializable {
         this.name = name;
     }
 
-    public String getTagline() {
-        return tagline;
-    }
-
-    public void setTagline(String tagline) {
-        this.tagline = tagline;
-    }
-
-    public Date getFirstBrewed() {
-        return firstBrewed;
-    }
-
-    public void setFirstBrewed(Date firstBrewed) {
-        this.firstBrewed = firstBrewed;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getImgUrl() {
         return imgUrl;
     }
@@ -127,52 +102,12 @@ public class Beer implements Serializable {
         this.ibu = ibu;
     }
 
-    public float getTargetFg() {
-        return targetFg;
-    }
-
-    public void setTargetFg(float targetFg) {
-        this.targetFg = targetFg;
-    }
-
-    public float getTargetOg() {
-        return targetOg;
-    }
-
-    public void setTargetOg(float targetOg) {
-        this.targetOg = targetOg;
-    }
-
     public float getEbc() {
         return ebc;
     }
 
     public void setEbc(float ebc) {
         this.ebc = ebc;
-    }
-
-    public float getSrm() {
-        return srm;
-    }
-
-    public void setSrm(float srm) {
-        this.srm = srm;
-    }
-
-    public float getPh() {
-        return ph;
-    }
-
-    public void setPh(float ph) {
-        this.ph = ph;
-    }
-
-    public float getAttenuationLevel() {
-        return attenuationLevel;
-    }
-
-    public void setAttenuationLevel(float attenuationLevel) {
-        this.attenuationLevel = attenuationLevel;
     }
 
     public Ingredients getIngredients() {
@@ -190,4 +125,5 @@ public class Beer implements Serializable {
     public void setFoodPairing(List<String> foodPairing) {
         this.foodPairing = foodPairing;
     }
+
 }

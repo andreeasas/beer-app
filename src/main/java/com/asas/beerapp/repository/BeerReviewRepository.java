@@ -12,6 +12,4 @@ public interface BeerReviewRepository extends JpaRepository<BeerReview, Long> {
 
     List<BeerReview> findByUserEmail(String email);
 
-    List<BeerReview> findFuzzByBeerName(String beerName);
-
 }

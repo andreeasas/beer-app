@@ -4,22 +4,16 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.time.ZonedDateTime;
 
-@Entity
-public class BeerReview implements Serializable {
-
-    @Id
-    private long id;
-
+@Embeddable
+public class BeerReview2 {
     @Email
     private String userEmail;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "beer_id",referencedColumnName="id")
-    private Beer beer;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "beer_id",referencedColumnName="id")
+//    private Beer beer;
 
     private boolean drunkBefore;
 
@@ -34,11 +28,7 @@ public class BeerReview implements Serializable {
     private int tasteNote;
     private String comments;
 
-    public BeerReview() {
-    }
-
-    public long getId() {
-        return id;
+    public BeerReview2() {
     }
 
     public String getUserEmail() {

@@ -22,11 +22,7 @@ public class BeerReviewService {
         return beerReviewRepository.findByUserEmail(email);
     }
 
-    public List<BeerReview> selectAllReviewsByBeerName(String beerName) {
-        return beerReviewRepository.findFuzzByBeerName(beerName);
-    }
-
-    public BeerReview insertBeer(BeerReview beerReview) {
+    public BeerReview insertBeerReview(BeerReview beerReview) {
         return beerReviewRepository.save(beerReview);
     }
 
