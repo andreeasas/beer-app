@@ -11,7 +11,7 @@ GET https://api.punkapi.com/v2/beers?page=2&per_page=80
 
 ###
 
-# curl https://api.punkapi.com/v2/beers?page=
+# curl https://api.punkapi.com/v2/beers?fermentation=19
 GET https://api.punkapi.com/v2/beers?fermentation=19
 
 ###

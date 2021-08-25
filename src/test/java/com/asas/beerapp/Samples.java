@@ -2,10 +2,10 @@ package com.asas.beerapp;
 
 import com.asas.beerapp.model.Beer;
 import com.asas.beerapp.model.BeerReview;
+import com.asas.beerapp.model.Fermentation;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class Samples {
 
@@ -41,13 +41,7 @@ public class Samples {
         return beerReview;
     }
 
-    public static Beer createBeerSample(){
-        Beer beer = new Beer();
-        setTestValues(beer);
-        return beer;
-    }
-
-    public static Beer createBeerSample(long id) {
+    public static Beer createDefaultBeerSample(long id) {
         Beer beer = new Beer(id);
         setTestValues(beer);
         return beer;
@@ -58,6 +52,11 @@ public class Samples {
         beer.setAbv(6.0f);
         beer.setIbu(60);
         beer.setEbc(24.5f);
+
+        Fermentation fermentation = new Fermentation();
+        fermentation.setTemperatureValue(19f);
+        fermentation.setUnit("celsius");
+        beer.setFermentation(fermentation);
 
         ArrayList<String> foodPairing = new ArrayList<>();
         foodPairing.add("Spicy carne asada with a pico de gallo sauce");

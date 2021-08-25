@@ -17,7 +17,7 @@ import java.util.List;
 )
 public class BeerReviewResourceSpringMVC {
 
-    private BeerReviewService beerReviewService;
+    private final BeerReviewService beerReviewService;
 
     @Autowired
     public BeerReviewResourceSpringMVC(BeerReviewService beerReviewService) {

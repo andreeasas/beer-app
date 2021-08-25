@@ -22,11 +22,9 @@ public class JsonBeer {
     private float targetFg;
     private float targetOg;
     private float ebc;
-//    private float srm;
-//    private float ph;
-//    private float attenuationLevel;
 
-//    private JsonIngredients ingredients;
+    private JsonMethod method;
+    private JsonIngredients ingredients;
     @Singular
     @JsonProperty("food_pairing")
     private List<String> foodPairings;

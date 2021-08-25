@@ -4,11 +4,11 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 
 @Entity
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "beer_id", "userEmail" }) })
 public class BeerReview implements Serializable {
 
     @Id

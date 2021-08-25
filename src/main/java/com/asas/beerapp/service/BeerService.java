@@ -20,20 +20,8 @@ public class BeerService {
         this.beerRepository = beerRepository;
     }
 
-    public List<Beer> selectAllBeers() {
-        return beerRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
-    }
-
     public Optional<Beer> selectBeerById(long id) {
         return beerRepository.findById(id);
-    }
-
-    public Beer selectRandomBeer() {
-        Beer randomBeer = beerRepository.findRandomBeer();
-        if (randomBeer == null) {
-            throw new NotFoundException("No random beer was found.");
-        }
-        return randomBeer;
     }
 
     public Beer insertBeer(Beer beer) {
@@ -45,12 +33,8 @@ public class BeerService {
         beerRepository.deleteById(id);
     }
 
-    public List<Beer> selectFuzzByFoodPairing(String foodDetails) {
-        return beerRepository.findFuzzByFoodPairing(foodDetails);
-    }
-
-    public List<Beer> selectByOptionalParams(Float abvGt, Float abvLt, Integer ibuGt, Integer ibuLt, Float ebcGt, Float ebcLt) {
-        return beerRepository.findByOptionalParams(abvGt, abvLt, ibuGt, ibuLt, ebcGt, ebcLt);
+    public List<Beer> selectByOptionalParams(Float fermentationGt, Float fermentationLt, Integer ibuGt, Integer ibuLt){
+        return beerRepository.findByOptionalParams(fermentationGt, fermentationLt, ibuGt, ibuLt);
     }
 
 }

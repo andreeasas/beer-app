@@ -2,7 +2,6 @@ package com.asas.beerapp.repository;
 
 
 import com.asas.beerapp.model.Beer;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.List;
 
-import static com.asas.beerapp.Samples.createBeerSample;
+import static com.asas.beerapp.Samples.createDefaultBeerSample;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
@@ -21,48 +20,29 @@ class BeerRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        beerRepository.save(createBeerSample());
-    }
-
-    @Test
-    void shouldFindRandomBeer() {
-        assertThat(beerRepository.findRandomBeer()).isNotNull();
-    }
-
-    @Test
-    void findFuzzByFoodPairing() {
-        // TODO fix
-        // given setup
-
-        // when
-        List<Beer> beers = beerRepository.findFuzzByFoodPairing("chicken");
-
-        // then
-        assertThat(beers.size()).isEqualTo(1);
+        beerRepository.save(createDefaultBeerSample(1L));
     }
 
     @Test
     void findByOptionalParamsAllFields() {
         // given setup
-        float abvGt = 5f;
-        float abvLt = 30f;
+        float fermentationGt = 10f;
+        float fermentationLt = 30f;
         int ibuGt = 50;
         int ibuLt = 100;
-        float ebcGt = 10f;
-        float ebcLt = 30f;
 
         // when
-        List<Beer> beers = beerRepository.findByOptionalParams(abvGt, abvLt, ibuGt, ibuLt, ebcGt, ebcLt);
+        List<Beer> beers = beerRepository.findByOptionalParams(fermentationGt, fermentationLt, ibuGt, ibuLt);
 
         // then
         assertThat(beers.size()).isEqualTo(1);
         Beer beer = beers.get(0);
-        assertThat(beer.getAbv()).isGreaterThan(abvGt);
-        assertThat(beer.getAbv()).isLessThan(abvLt);
+
+        assertThat(beer.getFermentation()).isNotNull();
+        assertThat(beer.getFermentation().getTemperatureValue()).isGreaterThan(fermentationGt);
+        assertThat(beer.getFermentation().getTemperatureValue()).isLessThan(fermentationLt);
         assertThat(beer.getIbu()).isGreaterThan(ibuGt);
         assertThat(beer.getIbu()).isLessThan(ibuLt);
-        assertThat(beer.getEbc()).isGreaterThan(ebcGt);
-        assertThat(beer.getEbc()).isLessThan(ebcLt);
     }
 
     @Test
@@ -70,7 +50,7 @@ class BeerRepositoryTest {
         // given setup
 
         // when
-        List<Beer> beers = beerRepository.findByOptionalParams(null, null, null, null, null, null);
+        List<Beer> beers = beerRepository.findByOptionalParams(null, null, null, null);
 
         // then
         List<Beer> allBeers = beerRepository.findAll();
@@ -80,19 +60,16 @@ class BeerRepositoryTest {
     @Test
     void findByOptionalParamsRandomFields() {
         // given setup
-        Float abvGt = 5.0f;
-        Float abvLt = null;
+        Float fermentationGt = null;
+        Float fermentationLt = null;
         Integer ibuGt = null;
         Integer ibuLt = 100;
-        Float ebcGt = null;
-        Float ebcLt = null;
 
         // when
-        List<Beer> beers = beerRepository.findByOptionalParams(abvGt, abvLt, ibuGt, ibuLt, ebcGt, ebcLt);
+        List<Beer> beers = beerRepository.findByOptionalParams(fermentationGt, fermentationLt, ibuGt, ibuLt);
 
         // then
         assertThat(beers.size()).isEqualTo(1);
-        assertThat(beers.get(0).getAbv()).isGreaterThan(abvGt);
         assertThat(beers.get(0).getIbu()).isLessThan(ibuLt);
     }
 }

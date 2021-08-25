@@ -9,19 +9,11 @@ import java.util.List;
 public class Beer implements Serializable {
 
     @Id
-    @GeneratedValue
     private long id;
 
     @NotBlank
     private String name;
 
-//    private String tagline;
-//
-//    @NotNull
-//    @Temporal(TemporalType.DATE)
-//    private Date firstBrewed;
-//
-//    private String description;
     private String imgUrl;
 
     @NotNull
@@ -34,30 +26,19 @@ public class Beer implements Serializable {
     @Max(value = 120, message = "Max IBU value should be 120.")
     private int ibu;
 
-//    private float targetFg;
-//    private float targetOg;
-
     @NotNull
     @DecimalMin(value = "0", message = "Min EBC value should be 0.")
     @DecimalMax(value = "100", message = "Max EBC value should be 100.")
     private float ebc;
 
-//    private float srm;
-//    private float ph;
-//    private float attenuationLevel;
-
-//    private Volume volume;
-//    private Volume boilVolume;
-//    private Method method;
+    @Embedded
+    private Fermentation fermentation;
 
     @Embedded
     private Ingredients ingredients;
 
     @ElementCollection
     private List<String> foodPairing;
-
-//    private String brewersTips;
-//    private String contributedBy;
 
     public Beer() {
     }
@@ -108,6 +89,14 @@ public class Beer implements Serializable {
 
     public void setEbc(float ebc) {
         this.ebc = ebc;
+    }
+
+    public Fermentation getFermentation() {
+        return fermentation;
+    }
+
+    public void setFermentation(Fermentation fermentation) {
+        this.fermentation = fermentation;
     }
 
     public Ingredients getIngredients() {

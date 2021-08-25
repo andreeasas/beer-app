@@ -1,8 +1,8 @@
 package com.asas.beerapp.model;
 
-import com.asas.beerapp.model.measures.Amount;
-
-import javax.persistence.*;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -43,31 +43,11 @@ public class Ingredients implements Serializable {
 }
 
 @Embeddable
-@Access(AccessType.FIELD)
 class Ingredient implements Serializable {
 
     @NotBlank
     private String name;
 
-//    @Embedded
-//    private Amount amount;
-
-    private String add;
-    private String attribute;
-
-    public String getName() {
-        return name;
-    }
-
-//    public Amount getAmount() {
-//        return amount;
-//    }
-
-    public String getAdd() {
-        return add;
-    }
-
-    public String getAttribute() {
-        return attribute;
-    }
+    private float value;
+    private String unit;
 }

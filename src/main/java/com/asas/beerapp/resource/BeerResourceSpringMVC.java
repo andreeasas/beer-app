@@ -29,8 +29,12 @@ public class BeerResourceSpringMVC {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public List<Beer> fetchAllBeers() {
-        return beerService.selectAllBeers();
+    public List<Beer> selectByOptionalParams(
+            @RequestParam(required = false) Float fermentationGt
+            , @RequestParam(required = false) Float fermentationLt
+            , @RequestParam(required = false) Integer ibuGt
+            , @RequestParam(required = false) Integer ibuLt) {
+        return beerService.selectByOptionalParams(fermentationGt, fermentationLt, ibuGt, ibuLt);
     }
 
     @RequestMapping(
@@ -42,15 +46,6 @@ public class BeerResourceSpringMVC {
         return beerService
                 .selectBeerById(beerId)
                 .orElseThrow(() -> new NotFoundException("Beer " + beerId + " not found"));
-    }
-
-    @RequestMapping(
-            method = RequestMethod.GET,
-            value = "/random",
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public Beer fetchRandomBeer() {
-        return beerService.selectRandomBeer();
     }
 
     @RequestMapping(

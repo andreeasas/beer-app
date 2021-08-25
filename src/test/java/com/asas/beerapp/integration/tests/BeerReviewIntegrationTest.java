@@ -14,29 +14,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class BeerReviewIntegrationTest {
 
-//    @Autowired
-//    private BeerReviewResource beerReviewResource;
+    @Autowired
+    private BeerReviewResource beerReviewResource;
 
     @Test
     void contextLoads() {
     }
 
-//    @Test
-//    void shouldFetchReviewsByEmail() {
-//        // given
-//        int startingEntries = beerReviewResource.fetchReviewsByEmail(defaultEmail).size();
-//        beerReviewResource.insertNewReview(createReviewNotDrunk(defaultEmail, 1));
-//        beerReviewResource.insertNewReview(createReviewNotDrunk(defaultEmail, 2));
-//        beerReviewResource.insertNewReview(createReviewNotDrunk(secondEmail, 3));
-//        beerReviewResource.insertNewReview(createReviewNotDrunk(secondEmail, 4));
-//        beerReviewResource.insertNewReview(createReviewNotDrunk(secondEmail, 5));
-//
-//        // when
-//        List<BeerReview> beersByEmail = beerReviewResource.fetchReviewsByEmail(defaultEmail);
-//
-//        // then
-//
-//        assertThat(beersByEmail.size()).isEqualTo(startingEntries + 2);
-//    }
+    @Test
+    void shouldFetchReviewsByEmail() {
+        // given
+        int startingEntries = beerReviewResource.fetchReviewsByEmail(defaultEmail).size();
+        beerReviewResource.insertNewReview(createReviewNotDrunk(defaultEmail, 1));
+        beerReviewResource.insertNewReview(createReviewNotDrunk(defaultEmail, 2));
+        beerReviewResource.insertNewReview(createReviewNotDrunk(secondEmail, 3));
+        beerReviewResource.insertNewReview(createReviewNotDrunk(secondEmail, 4));
+        beerReviewResource.insertNewReview(createReviewNotDrunk(secondEmail, 5));
+
+        // when
+        List<BeerReview> beersByEmail = beerReviewResource.fetchReviewsByEmail(defaultEmail);
+
+        // then
+
+        assertThat(beersByEmail.size()).isEqualTo(startingEntries + 2);
+    }
 
 }

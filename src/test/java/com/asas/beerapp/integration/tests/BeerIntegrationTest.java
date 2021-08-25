@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.ws.rs.NotFoundException;
 import java.util.List;
 
-import static com.asas.beerapp.Samples.createBeerSample;
+import static com.asas.beerapp.Samples.createDefaultBeerSample;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -24,27 +24,10 @@ public class BeerIntegrationTest {
     }
 
     @Test
-    void shouldFetchAllBeers() {
-        // given
-        int startingEntries = beerResource.fetchAllBeers().size();
-        beerResource.insertNewBeer(createBeerSample(100L));
-        beerResource.insertNewBeer(createBeerSample(101L));
-        beerResource.insertNewBeer(createBeerSample(102L));
-        beerResource.insertNewBeer(createBeerSample(103L));
-        beerResource.insertNewBeer(createBeerSample(104L));
-
-        // when
-        List<Beer> allBeers = beerResource.fetchAllBeers();
-
-        // then
-        assertThat(allBeers.size()).isEqualTo(startingEntries + 5);
-    }
-
-    @Test
     void shouldInsertNewBeer() {
         // given
         long id = 1L;
-        Beer beer = createBeerSample(id);
+        Beer beer = createDefaultBeerSample(id);
 
         // when
         beerResource.insertNewBeer(beer);
@@ -59,7 +42,7 @@ public class BeerIntegrationTest {
     void shouldDeleteBeer() {
         // given
         long id = 1L;
-        beerResource.insertNewBeer(createBeerSample(id));
+        beerResource.insertNewBeer(createDefaultBeerSample(id));
 
         // when
         beerResource.deleteBeer(id);

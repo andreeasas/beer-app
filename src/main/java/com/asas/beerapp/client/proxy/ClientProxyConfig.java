@@ -13,35 +13,28 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ClientProxyConfig {
 
-//    @Value("${resteasy.reviews.api.url}")
-//    private String reviewsEndpointUrl;
-//
-//    @Bean
-//    public BeerReviewResource getBeerReviewResource() {
-//        // Network communication between the client and server is handled by HttpClient from the Apache HttpComponents.
-//        // by default SingleClientConnManager, which manages a single socket = serially invocations on a single thread
-//        ResteasyClient client = (ResteasyClient) ResteasyClientBuilder.newClient();
-//        // WebTarget represents a distinct URL from which you can invoke requests on.
-//        ResteasyWebTarget target = client.target(beersEndpointUrl);
-//        // UserResourceV1 is an Interface defining the http requests (based on JAX-RS annotations) to invoke on a remote RESTful web services.
-//        // (BeerResourceSpringMVC is the remote RESTful web service, is based on mvc @RequestMapping annotations.)
-//        BeerReviewResource proxy = target.proxy(BeerReviewResource.class);
-//        return proxy;
-//    }
+    @Value("${resteasy.reviews.api.url}")
+    private String reviewsEndpointUrl;
 
     @Value("${resteasy.beers.api.url}")
     private String beersEndpointUrl;
 
     @Bean
-    public BeerResource getBeerResource() {
+    public BeerReviewResource getBeerReviewResource() {
         // Network communication between the client and server is handled by HttpClient from the Apache HttpComponents.
         // by default SingleClientConnManager, which manages a single socket = serially invocations on a single thread
         ResteasyClient client = (ResteasyClient) ResteasyClientBuilder.newClient();
         // WebTarget represents a distinct URL from which you can invoke requests on.
+        ResteasyWebTarget target = client.target(reviewsEndpointUrl);
+        // BeerReviewResource is an Interface defining the http requests (based on JAX-RS annotations) to invoke on a remote RESTful web services.
+        // (BeerReviewResourceSpringMVC is the remote RESTful web service, is based on mvc @RequestMapping annotations.)
+        return target.proxy(BeerReviewResource.class);
+    }
+
+    @Bean
+    public BeerResource getBeerResource() {
+        ResteasyClient client = (ResteasyClient) ResteasyClientBuilder.newClient();
         ResteasyWebTarget target = client.target(beersEndpointUrl);
-        // BeerResource is an Interface defining the http requests (based on JAX-RS annotations) to invoke on a remote RESTful web services.
-        // (BeerResourceSpringMVC is the remote RESTful web service, is based on mvc @RequestMapping annotations.)
-        BeerResource proxy = target.proxy(BeerResource.class);
-        return proxy;
+        return target.proxy(BeerResource.class);
     }
 }

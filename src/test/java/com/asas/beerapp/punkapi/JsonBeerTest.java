@@ -1,9 +1,6 @@
 package com.asas.beerapp.punkapi;
 
 import com.asas.beerapp.util.Util;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import lombok.SneakyThrows;
 import org.junit.Test;
 
@@ -31,21 +28,29 @@ public class JsonBeerTest {
                 .targetFg(1010.0f)
                 .targetOg(1056.0f)
                 .ebc(17.0f)
-//                .ingredients(
-//                        new JsonIngredients.JsonIngredientsBuilder()
-//                                .malt(new JsonIngredient.JsonIngredientBuilder()
-//                                        .name("Extra Pale")
-//                                        .build()
-//                                )
-//                                .hops(new JsonIngredient.JsonIngredientBuilder()
-//                                        .name("Ahtanum")
-//                                        .build())
-//                                .hops(new JsonIngredient.JsonIngredientBuilder()
-//                                        .name("Chinook")
-//                                        .build())
-//                                .yeast("Wyeast 1056 - American Ale™")
-//                                .build()
-//                )
+                .method(new JsonMethod.JsonMethodBuilder()
+                        .fermentation(new JsonFermentation.JsonFermentationBuilder()
+                                .temp(new JsonTemperature.JsonTemperatureBuilder()
+                                        .value(19)
+                                        .unit("celsius")
+                                        .build())
+                                .build()
+                        ).build())
+                .ingredients(
+                        new JsonIngredients.JsonIngredientsBuilder()
+                                .malt(new JsonIngredient.JsonIngredientBuilder()
+                                        .name("Extra Pale")
+                                        .build()
+                                )
+                                .hops(new JsonIngredient.JsonIngredientBuilder()
+                                        .name("Ahtanum")
+                                        .build())
+                                .hops(new JsonIngredient.JsonIngredientBuilder()
+                                        .name("Chinook")
+                                        .build())
+                                .yeast("Wyeast 1056 - American Ale™")
+                                .build()
+                )
                 .foodPairing("Spicy carne asada with a pico de gallo sauce")
                 .foodPairing("Shredded chicken tacos with a mango chilli lime salsa")
                 .foodPairing("Cheesecake with a passion fruit swirl sauce")
