@@ -2,24 +2,24 @@ package com.asas.beerapp.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "beer_id", "userEmail" }) })
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"beerId", "userEmail"})})
 public class BeerReview implements Serializable {
 
     @Id
+    @GeneratedValue
     private long id;
 
     @Email
     private String userEmail;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "beer_id",referencedColumnName="id")
-    private Beer beer;
+    @NotNull
+    private long beerId;
 
     private boolean drunkBefore;
 
@@ -27,10 +27,10 @@ public class BeerReview implements Serializable {
     private String where;
 
     @Column(name = "when_tasted")
-    private ZonedDateTime when;
+    private LocalDate when;
 
-    @Min(1)
-    @Max(5)
+    //    @Min(1)
+    //    @Max(5)
     private int tasteNote;
     private String comments;
 
@@ -49,6 +49,14 @@ public class BeerReview implements Serializable {
         this.userEmail = userEmail;
     }
 
+    public long getBeerId() {
+        return beerId;
+    }
+
+    public void setBeerId(long beerId) {
+        this.beerId = beerId;
+    }
+
     public boolean isDrunkBefore() {
         return drunkBefore;
     }
@@ -65,12 +73,12 @@ public class BeerReview implements Serializable {
         this.where = where;
     }
 
-    public ZonedDateTime getWhen() {
-        return when;
+    public void setWhen(LocalDate when) {
+        this.when = when;
     }
 
-    public void setWhen(ZonedDateTime when) {
-        this.when = when;
+    public LocalDate getWhen() {
+        return when;
     }
 
     public int getTasteNote() {
@@ -87,5 +95,18 @@ public class BeerReview implements Serializable {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BeerReview that = (BeerReview) o;
+        return id == that.id && beerId == that.beerId && userEmail.equals(that.userEmail);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userEmail, beerId);
     }
 }

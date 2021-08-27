@@ -1,7 +1,6 @@
 package com.asas.beerapp.client.proxy;
 
 import com.asas.beerapp.model.BeerReview;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
@@ -18,7 +17,8 @@ public interface BeerReviewResource {
 
     @GET
     @Produces(APPLICATION_JSON_VALUE)
-     List<BeerReview> fetchReviewsByEmail(@PathVariable("email") String email);
+    @Path("{email}")
+    List<BeerReview> fetchReviewsByEmail(@PathParam("email") String email);
 
     @POST
     @Produces(APPLICATION_JSON_VALUE)

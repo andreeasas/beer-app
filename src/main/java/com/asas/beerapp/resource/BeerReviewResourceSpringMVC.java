@@ -15,6 +15,7 @@ import java.util.List;
 @RequestMapping(
         path = "${reviews.api.url}"
 )
+@CrossOrigin(origins = "http://localhost:4200")
 public class BeerReviewResourceSpringMVC {
 
     private final BeerReviewService beerReviewService;
@@ -22,6 +23,14 @@ public class BeerReviewResourceSpringMVC {
     @Autowired
     public BeerReviewResourceSpringMVC(BeerReviewService beerReviewService) {
         this.beerReviewService = beerReviewService;
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public List<BeerReview> fetchAllReviews() {
+        return beerReviewService.selectAllReviews();
     }
 
     @RequestMapping(

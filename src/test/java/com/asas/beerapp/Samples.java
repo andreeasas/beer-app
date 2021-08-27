@@ -1,67 +1,52 @@
 package com.asas.beerapp;
 
-import com.asas.beerapp.model.Beer;
 import com.asas.beerapp.model.BeerReview;
-import com.asas.beerapp.model.Fermentation;
-
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
 
 public class Samples {
 
-    public static final String defaultEmail="joedoe@gmail.com";
-    public static final String secondEmail="joedoe2@gmail.com";
+    public static final long defaultBeerId=1;
+
+    public static final String defaultEmail = "joedoe@gmail.com";
+    public static final String secondEmail = "joedoe2@gmail.com";
+    public static final String thirdEmail = "joedoe3@gmail.com";
+
+    public static final int defaultTasteNote = 4;
 
     public static BeerReview createDefaultReview() {
         BeerReview beerReview = new BeerReview();
         beerReview.setUserEmail(defaultEmail);
+        beerReview.setBeerId(defaultBeerId);
         beerReview.setDrunkBefore(true);
-        beerReview.setWhen(ZonedDateTime.now());
+//        beerReview.setWhen(ZonedDateTime.now());
         beerReview.setWhere("UK");
         beerReview.setTasteNote(4);
         beerReview.setComments("It was pretty ok for a dinner.");
         return beerReview;
     }
 
-    public static BeerReview createReviewNotDrunk(String email, int beerId) {
+    public static BeerReview createReviewNotDrunk(String email, long beerId) {
         BeerReview beerReview = new BeerReview();
         beerReview.setUserEmail(email);
+        beerReview.setBeerId(beerId);
         beerReview.setDrunkBefore(false);
         return beerReview;
     }
 
-    public static BeerReview createReviewDrunk(String email, int beerId) {
+    public static BeerReview createReviewWithRating(String email, long beerId, int tasteNote) {
         BeerReview beerReview = new BeerReview();
         beerReview.setUserEmail(email);
+        beerReview.setBeerId(beerId);
         beerReview.setDrunkBefore(true);
-        beerReview.setWhen(ZonedDateTime.now());
+//        beerReview.setWhen(ZonedDateTime.now());
         beerReview.setWhere("UK");
-        beerReview.setTasteNote(4);
+        beerReview.setTasteNote(tasteNote);
         beerReview.setComments("It was pretty ok for a dinner.");
         return beerReview;
     }
 
-    public static Beer createDefaultBeerSample(long id) {
-        Beer beer = new Beer(id);
-        setTestValues(beer);
-        return beer;
+    public static BeerReview createReviewDrunk(String email, long beerId) {
+        BeerReview beerReview = createReviewWithRating(email, beerId, defaultTasteNote);
+        return beerReview;
     }
 
-    private static void setTestValues(Beer beer) {
-        beer.setName("Punk IPA 2007 - 2010");
-        beer.setAbv(6.0f);
-        beer.setIbu(60);
-        beer.setEbc(24.5f);
-
-        Fermentation fermentation = new Fermentation();
-        fermentation.setTemperatureValue(19f);
-        fermentation.setUnit("celsius");
-        beer.setFermentation(fermentation);
-
-        ArrayList<String> foodPairing = new ArrayList<>();
-        foodPairing.add("Spicy carne asada with a pico de gallo sauce");
-        foodPairing.add("Shredded chicken tacos with a mango chilli lime salsa");
-        foodPairing.add("Cheesecake with a passion fruit swirl sauce");
-        beer.setFoodPairing(foodPairing);
-    }
 }
