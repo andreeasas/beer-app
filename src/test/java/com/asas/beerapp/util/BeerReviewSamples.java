@@ -1,8 +1,10 @@
-package com.asas.beerapp;
+package com.asas.beerapp.util;
 
 import com.asas.beerapp.model.BeerReview;
 
-public class Samples {
+import java.time.LocalDate;
+
+public class BeerReviewSamples {
 
     public static final long defaultBeerId=1;
 
@@ -11,18 +13,6 @@ public class Samples {
     public static final String thirdEmail = "joedoe3@gmail.com";
 
     public static final int defaultTasteNote = 4;
-
-    public static BeerReview createDefaultReview() {
-        BeerReview beerReview = new BeerReview();
-        beerReview.setUserEmail(defaultEmail);
-        beerReview.setBeerId(defaultBeerId);
-        beerReview.setDrunkBefore(true);
-//        beerReview.setWhen(ZonedDateTime.now());
-        beerReview.setWhere("UK");
-        beerReview.setTasteNote(4);
-        beerReview.setComments("It was pretty ok for a dinner.");
-        return beerReview;
-    }
 
     public static BeerReview createReviewNotDrunk(String email, long beerId) {
         BeerReview beerReview = new BeerReview();
@@ -37,15 +27,10 @@ public class Samples {
         beerReview.setUserEmail(email);
         beerReview.setBeerId(beerId);
         beerReview.setDrunkBefore(true);
-//        beerReview.setWhen(ZonedDateTime.now());
+        beerReview.setWhen(LocalDate.now());
         beerReview.setWhere("UK");
         beerReview.setTasteNote(tasteNote);
         beerReview.setComments("It was pretty ok for a dinner.");
-        return beerReview;
-    }
-
-    public static BeerReview createReviewDrunk(String email, long beerId) {
-        BeerReview beerReview = createReviewWithRating(email, beerId, defaultTasteNote);
         return beerReview;
     }
 

@@ -1,4 +1,4 @@
-package com.asas.beerapp.resource;
+package com.asas.beerapp.controller;
 
 import com.asas.beerapp.model.BeerReview;
 import com.asas.beerapp.service.BeerReviewService;

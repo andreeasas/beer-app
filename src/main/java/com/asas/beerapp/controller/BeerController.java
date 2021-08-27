@@ -3,16 +3,20 @@ package com.asas.beerapp.controller;
 import com.asas.beerapp.punkapi.JsonBeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Validated
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping(
+        path = "${beers.api.url}"
+)
+@CrossOrigin(origins = "${frontend.url}")
 public class BeerController {
 
     private final RestTemplate restTemplate;
@@ -22,11 +26,25 @@ public class BeerController {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    private static final String url = "https://api.punkapi.com/v2/beers";
+    private static final String PUNKAPI_URL = "https://api.punkapi.com/v2/beers";
 
-    @GetMapping("/beers")
+    @RequestMapping(
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
     public List<JsonBeer> getBeers() {
-        JsonBeer[] jsonBeers = restTemplate.getForObject(url, JsonBeer[].class);
+        JsonBeer[] jsonBeers = restTemplate.getForObject(PUNKAPI_URL, JsonBeer[].class);
+        assert jsonBeers != null;
+        return Arrays.asList(jsonBeers);
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            path = "{beerIds}"
+    )
+    public List<JsonBeer> getBeersByIds(@PathVariable("beerIds") String ids) {
+        JsonBeer[] jsonBeers = restTemplate.getForObject(PUNKAPI_URL + "?ids=" + ids, JsonBeer[].class);
         assert jsonBeers != null;
         return Arrays.asList(jsonBeers);
     }

@@ -4,47 +4,102 @@ GET http://localhost:8080/beers
 
 ###
 
-# curl --location --request POST 'http://localhost:8080/api.beer.app/reviews'
+## curl --location --request POST 'http://localhost:8080/api.beer.app/reviews'
+##--header 'Content-Type: application/json'
+##--data-raw '{
+##      "userEmail":"joedoe%40gmail.com",
+##      "beerId":1,
+##      "drunkBefore":1,
+##      "where":"Munchen",
+##      "when":"2018-03-01",
+##      "tasteNote":"4",
+##      "comments":"It was ok for a dinner."
+##}'
+#POST http://localhost:8080/api.beer.app/reviews
+#Content-Type: application/json
+#
+#{
+#  "userEmail": "joedoe%40gmail.com",
+#  "beerId": 1,
+#  "drunkBefore": 1,
+#  "where": "Munchen",
+#  "when": "2018-03-01",
+#  "tasteNote": "4",
+#  "comments": "It was ok for a dinner."
+#}
+#
+####
+#
+## curl --location --request POST 'http://localhost:8080/api.beer.app/reviews'
+##--header 'Content-Type: application/json'
+##--data-raw '{
+##      "userEmail":"joedoe%40gmail.com",
+##      "beerId":1,
+##      "drunkBefore":0
+##}'
+#POST http://localhost:8080/api.beer.app/reviews
+#Content-Type: application/json
+#
+#{
+#  "userEmail": "joedoe%40gmail.com",
+#  "beerId": 2,
+#  "drunkBefore": 0
+#}
+
+
+###
+
+# curl --location --request POST 'http://localhost:8080/api.beer.app/favorites'
 #--header 'Content-Type: application/json'
 #--data-raw '{
 #      "userEmail":"joedoe%40gmail.com",
-#      "beerId":1,
+#      "beerId":3,
 #      "drunkBefore":1,
 #      "where":"Munchen",
-#      "when":"2018-03-01",
+#      "when":"01/04/2019",
 #      "tasteNote":"4",
 #      "comments":"It was ok for a dinner."
 #}'
-POST http://localhost:8080/api.beer.app/reviews
+POST http://localhost:8080/api.beer.app/favorites
 Content-Type: application/json
 
 {
   "userEmail": "joedoe@gmail.com",
-  "beerId": 1,
+  "beerId": 3,
   "drunkBefore": 1,
   "where": "Munchen",
-  "when": "2018-03-01",
+  "when": "01/04/2019",
   "tasteNote": "4",
   "comments": "It was ok for a dinner."
 }
 
 ###
 
-###
-
-# curl --location --request POST 'http://localhost:8080/api.beer.app/reviews'
+# curl --location --request POST 'http://localhost:8080/api.beer.app/favorites'
 #--header 'Content-Type: application/json'
 #--data-raw '{
 #      "userEmail":"joedoe%40gmail.com",
-#      "beerId":1,
+#      "beerId":4,
 #      "drunkBefore":0
 #}'
-POST http://localhost:8080/api.beer.app/reviews
+POST http://localhost:8080/api.beer.app/favorites
 Content-Type: application/json
 
 {
   "userEmail": "joedoe@gmail.com",
-  "beerId": 2,
+  "beerId": 4,
   "drunkBefore": 0
 }
+
+###
+
+# curl --location --request GET 'http://localhost:8080/api.beer.app/beers/1%7C2' # 1%7C2 <=> 1|2
+GET http://localhost:8080/api.beer.app/beers/1%7C2
+
+###
+
+# curl --location --request GET 'http://localhost:8080/api.beer.app/favorites/joedoe%40gmail.com' # %40 = @
+GET http://localhost:8080/api.beer.app/favorites/joedoe@gmail.com
+
+###
 

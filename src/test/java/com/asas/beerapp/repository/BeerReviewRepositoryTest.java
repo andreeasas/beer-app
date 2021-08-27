@@ -2,14 +2,13 @@ package com.asas.beerapp.repository;
 
 import com.asas.beerapp.model.BeerReview;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.List;
 
-import static com.asas.beerapp.Samples.*;
+import static com.asas.beerapp.util.BeerReviewSamples.*;
 
 @DataJpaTest
 class BeerReviewRepositoryTest {

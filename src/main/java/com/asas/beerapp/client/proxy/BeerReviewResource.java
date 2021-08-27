@@ -23,15 +23,15 @@ public interface BeerReviewResource {
     @POST
     @Produces(APPLICATION_JSON_VALUE)
     @Consumes(APPLICATION_JSON_VALUE)
-     BeerReview insertNewReview(@Valid @RequestBody BeerReview beerReview) ;
+    BeerReview insertNewReview(@Valid @RequestBody BeerReview beerReview);
 
     @PUT
     @Produces(APPLICATION_JSON_VALUE)
     @Consumes(APPLICATION_JSON_VALUE)
-     void updateReview(BeerReview beerReview) ;
+    void updateReview(BeerReview beerReview);
 
     @DELETE
     @Produces(APPLICATION_JSON_VALUE)
     @Path("{reviewId}")
-     void deleteReview(@PathParam("reviewId") long id) ;
+    void deleteReview(@PathParam("reviewId") long id);
 }

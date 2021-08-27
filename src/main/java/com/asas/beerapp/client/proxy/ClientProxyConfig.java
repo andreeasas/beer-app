@@ -7,14 +7,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/** Documentation for RestEasy Client API:
- * https://docs.jboss.org/resteasy/docs/3.0-beta-3/userguide/html/RESTEasy_Client_Framework.html **/
+/**
+ * Documentation for RestEasy Client API:
+ * https://docs.jboss.org/resteasy/docs/3.0-beta-3/userguide/html/RESTEasy_Client_Framework.html
+ **/
 
 @Configuration
 public class ClientProxyConfig {
 
     @Value("${resteasy.reviews.api.url}")
     private String reviewsEndpointUrl;
+
+    @Value("${resteasy.favorites.api.url}")
+    private String favoriteBeersEndpointUrl;
 
     @Bean
     public BeerReviewResource getBeerReviewResource() {
@@ -26,6 +31,13 @@ public class ClientProxyConfig {
         // BeerReviewResource is an Interface defining the http requests (based on JAX-RS annotations) to invoke on a remote RESTful web services.
         // (BeerReviewResourceSpringMVC is the remote RESTful web service, is based on mvc @RequestMapping annotations.)
         return target.proxy(BeerReviewResource.class);
+    }
+
+    @Bean
+    public FavoriteBeerController getFavoriteBeerController() {
+        ResteasyClient client = (ResteasyClient) ResteasyClientBuilder.newClient();
+        ResteasyWebTarget target = client.target(favoriteBeersEndpointUrl);
+        return target.proxy(FavoriteBeerController.class);
     }
 
 }

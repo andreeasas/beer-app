@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static com.asas.beerapp.Samples.*;
+import static com.asas.beerapp.util.BeerReviewSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
@@ -21,10 +21,6 @@ public class BeerReviewIntegrationTest {
 
     @Autowired
     private BeerReviewRepository reviewRepository; // for cleanup only
-
-    @Test
-    void contextLoads() {
-    }
 
     @AfterEach
     void tearDown() {
@@ -52,7 +48,7 @@ public class BeerReviewIntegrationTest {
     @Test
     void shouldInsertReview(){
         // given
-        BeerReview beerReview = createReviewDrunk(defaultEmail, defaultBeerId);
+        BeerReview beerReview = createReviewWithRating(defaultEmail, defaultBeerId, defaultTasteNote);
 
         // when
         reviewResource.insertNewReview(beerReview);
