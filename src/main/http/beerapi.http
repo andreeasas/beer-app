@@ -1,51 +1,61 @@
 
+# REQUESTS FOR BEERS
 
-GET http://localhost:8080/beers
+# curl --location --request GET 'http://localhost:8080/api.beer.app/beers'
+GET http://localhost:8080/api.beer.app/beers
 
 ###
 
-## curl --location --request POST 'http://localhost:8080/api.beer.app/reviews'
-##--header 'Content-Type: application/json'
-##--data-raw '{
-##      "userEmail":"joedoe%40gmail.com",
-##      "beerId":1,
-##      "drunkBefore":1,
-##      "where":"Munchen",
-##      "when":"2018-03-01",
-##      "tasteNote":"4",
-##      "comments":"It was ok for a dinner."
-##}'
-#POST http://localhost:8080/api.beer.app/reviews
-#Content-Type: application/json
-#
-#{
-#  "userEmail": "joedoe%40gmail.com",
-#  "beerId": 1,
-#  "drunkBefore": 1,
-#  "where": "Munchen",
-#  "when": "2018-03-01",
-#  "tasteNote": "4",
-#  "comments": "It was ok for a dinner."
-#}
-#
-####
-#
-## curl --location --request POST 'http://localhost:8080/api.beer.app/reviews'
-##--header 'Content-Type: application/json'
-##--data-raw '{
-##      "userEmail":"joedoe%40gmail.com",
-##      "beerId":1,
-##      "drunkBefore":0
-##}'
-#POST http://localhost:8080/api.beer.app/reviews
-#Content-Type: application/json
-#
-#{
-#  "userEmail": "joedoe%40gmail.com",
-#  "beerId": 2,
-#  "drunkBefore": 0
-#}
+# curl --location --request GET 'http://localhost:8080/api.beer.app/beers/1%7C2%7C3'
+GET http://localhost:8080/api.beer.app/beers/1%7C2%7C3
 
+###
+
+# curl --location --request GET 'http://localhost:8080/api.beer.app/beers'
+#--header 'Content-Type: application/json'
+#--data-raw '{
+#  "ibuGt": 5,
+#  "ibuLt": 40,
+#  "yeast": "Ale",
+#  "food":"spicy"
+#}'
+GET http://localhost:8080/api.beer.app/beers
+Content-Type: application/json
+
+{
+  "ibuGt": 5,
+  "ibuLt": 40,
+  "yeast": "Ale",
+  "food": "spicy food"
+}
+
+###
+
+# curl --location --request GET 'http://localhost:8080/api.beer.app/beers'
+#--header 'Content-Type: application/json'
+#--data-raw '{
+#    "yeast":"American Ale"
+#}'
+GET http://localhost:8080/api.beer.app/beers
+Content-Type: application/json
+
+{
+  "yeast": "American Ale"
+}
+
+###
+
+# curl --location --request GET 'http://localhost:8080/api.beer.app/beers'
+#--header 'Content-Type: application/json'
+#--data-raw '{}'
+GET http://localhost:8080/api.beer.app/beers
+Content-Type: application/json
+
+{}
+
+###
+
+### REQUESTS FOR FAVORITE BEERS
 
 ###
 
@@ -93,13 +103,9 @@ Content-Type: application/json
 
 ###
 
-# curl --location --request GET 'http://localhost:8080/api.beer.app/beers/1%7C2' # 1%7C2 <=> 1|2
-GET http://localhost:8080/api.beer.app/beers/1%7C2
-
-###
-
 # curl --location --request GET 'http://localhost:8080/api.beer.app/favorites/joedoe%40gmail.com' # %40 = @
 GET http://localhost:8080/api.beer.app/favorites/joedoe@gmail.com
 
 ###
+
 

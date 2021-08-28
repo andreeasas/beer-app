@@ -1,4 +1,4 @@
-package com.asas.beerapp.controller;
+package com.asas.beerapp.appapi;
 
 import com.asas.beerapp.model.BeerReview;
 import com.asas.beerapp.punkapi.JsonBeer;
@@ -18,8 +18,8 @@ public class Builder {
     }
 
     public static JsonFavoriteBeer buildFavoriteBeer(BeerReview beerReview, JsonBeer jsonBeer) {
-        JsonFavoriteBeer jsonFavoriteBeer = new JsonFavoriteBeer.JsonFavoriteBeerBuilder()
-                .jsonReview(new JsonReview.JsonReviewBuilder()
+        JsonFavoriteBeer jsonFavoriteBeer = JsonFavoriteBeer.builder()
+                .jsonReview(JsonReview.builder()
                         .id(beerReview.getId())
                         .userEmail(beerReview.getUserEmail())
                         .beerId(beerReview.getBeerId())
@@ -29,7 +29,7 @@ public class Builder {
                         .tasteNote(beerReview.getTasteNote())
                         .comments(beerReview.getComments())
                         .build())
-                .jsonBeerDetails(new JsonBeerDetails.JsonBeerDetailsBuilder()
+                .jsonBeerDetails(JsonBeerDetails.builder()
                         .id(jsonBeer.getId())
                         .name(jsonBeer.getName())
                         .description(jsonBeer.getDescription())

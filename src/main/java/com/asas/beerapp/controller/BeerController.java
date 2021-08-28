@@ -1,5 +1,6 @@
 package com.asas.beerapp.controller;
 
+import com.asas.beerapp.appapi.JsonBeerSearchCriteria;
 import com.asas.beerapp.punkapi.JsonBeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -8,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,7 +34,7 @@ public class BeerController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public List<JsonBeer> getBeers() {
+    public List<JsonBeer> getAllBeers() {
         JsonBeer[] jsonBeers = restTemplate.getForObject(PUNKAPI_URL, JsonBeer[].class);
         assert jsonBeers != null;
         return Arrays.asList(jsonBeers);
@@ -48,5 +50,34 @@ public class BeerController {
         assert jsonBeers != null;
         return Arrays.asList(jsonBeers);
     }
+
+    @RequestMapping(
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public List<JsonBeer> getBeersByCriteria(@RequestBody JsonBeerSearchCriteria jsonBeerSearchCriteria) {
+        ArrayList<String> criteria = new ArrayList<>();
+        if (jsonBeerSearchCriteria.getIbuGt()!=0){
+            criteria.add("ibu_gt=" + jsonBeerSearchCriteria.getIbuGt());
+        }
+        if (jsonBeerSearchCriteria.getIbuLt()!=0){
+            criteria.add("ibu_lt="+ jsonBeerSearchCriteria.getIbuLt());
+        }
+        if(jsonBeerSearchCriteria.getYeast()!=null){
+            String yeast = jsonBeerSearchCriteria.getYeast().replace(' ', '_');
+            criteria.add("yeast="+yeast);
+        }
+        if (jsonBeerSearchCriteria.getFood()!=null){
+            String food = jsonBeerSearchCriteria.getFood().replace(' ', '_');
+            criteria.add("food="+food);
+        }
+        String queryParams = criteria.isEmpty()? "": "?"+String.join("&",criteria);
+
+        JsonBeer[] jsonBeers = restTemplate.getForObject(PUNKAPI_URL + queryParams, JsonBeer[].class);
+        assert jsonBeers != null;
+        return Arrays.asList(jsonBeers);
+    }
+
 
 }

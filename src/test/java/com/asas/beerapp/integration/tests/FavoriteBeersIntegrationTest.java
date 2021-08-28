@@ -1,7 +1,7 @@
 package com.asas.beerapp.integration.tests;
 
 import com.asas.beerapp.client.proxy.FavoriteBeerController;
-import com.asas.beerapp.controller.JsonFavoriteBeer;
+import com.asas.beerapp.appapi.JsonFavoriteBeer;
 import com.asas.beerapp.repository.BeerReviewRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

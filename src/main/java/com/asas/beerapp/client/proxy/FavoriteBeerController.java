@@ -1,7 +1,7 @@
 package com.asas.beerapp.client.proxy;
 
-import com.asas.beerapp.controller.JsonFavoriteBeer;
-import com.asas.beerapp.controller.JsonReview;
+import com.asas.beerapp.appapi.JsonFavoriteBeer;
+import com.asas.beerapp.appapi.JsonReview;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.ws.rs.*;

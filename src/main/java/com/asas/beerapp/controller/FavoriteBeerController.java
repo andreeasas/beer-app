@@ -1,5 +1,7 @@
 package com.asas.beerapp.controller;
 
+import com.asas.beerapp.appapi.JsonFavoriteBeer;
+import com.asas.beerapp.appapi.JsonReview;
 import com.asas.beerapp.model.BeerReview;
 import com.asas.beerapp.punkapi.JsonBeer;
 import com.asas.beerapp.service.BeerReviewService;
@@ -13,6 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import static com.asas.beerapp.appapi.Builder.buildBeerReview;
+import static com.asas.beerapp.appapi.Builder.buildFavoriteBeer;
 
 @Validated
 @RestController
@@ -37,7 +42,7 @@ public class FavoriteBeerController {
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public void insertNewReview(@RequestBody JsonReview jsonReview) {
-        BeerReview beerReview = Builder.buildBeerReview(jsonReview);
+        BeerReview beerReview = buildBeerReview(jsonReview);
         beerReviewService.insertBeerReview(beerReview);
     }
 
@@ -59,7 +64,7 @@ public class FavoriteBeerController {
         beerReviews.forEach(beerReview -> {
             JsonBeer jsonBeer = beers.get(beerReview.getBeerId());
 
-            JsonFavoriteBeer favoriteBeer = Builder.buildFavoriteBeer(beerReview, jsonBeer);
+            JsonFavoriteBeer favoriteBeer = buildFavoriteBeer(beerReview, jsonBeer);
             jsonFavoriteBeers.add(favoriteBeer);
         });
 

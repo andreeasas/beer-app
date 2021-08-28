@@ -1,4 +1,4 @@
-package com.asas.beerapp.controller;
+package com.asas.beerapp.appapi;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
