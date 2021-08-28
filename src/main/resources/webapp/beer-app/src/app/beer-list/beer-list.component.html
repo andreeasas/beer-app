@@ -1,42 +1,45 @@
 
-<div class="card my-5">
-  <div class="card-body">
-    <table class="table table-bordered table-striped">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let beer of beerDetails" (click)="onSelect(beer)">
-        <td>{{ beer.id }}</td>
-        <td>{{ beer.name }}</td>
-        <!-- TODO add image-->
-        <td></td>
-      </tbody>
-    </table>
-  </div>
+<div class="grid-container">
 
-  <div *ngIf="selectedBeer">
-    <h2>{{selectedBeer.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{selectedBeer.id}}</div>
-    <div>
-      <label for="beer-name">name: </label>
-      <input id="beer-name" [(ngModel)]="selectedBeer.name" placeholder="name">
-    </div>
-    <div>
-      <label for="beer-description">description: </label>
-      <input id="beer-description" [(ngModel)]="selectedBeer.description" placeholder="description">
-    </div>
-    <div>
-      <label for="beer-food">description: </label>
-      <input id="beer-food" [(ngModel)]="selectedBeer.foodPairings" placeholder="food pairings">
-    </div>
-
-    <li class="list-inline-item">
-      <a routerLink="/addfavoritebeer" class="btn btn-info">Add Favorite Beer</a>
+<div class>
+  <h4>Beers List</h4>
+  <ul class="list-group">
+    <li
+      class="list-group-item"
+      *ngFor="
+          let beer of beerDetails
+          let i = index
+        "
+      [class.active]="i == currentIndex"
+      (click)="setActiveBeer(beer, i)"
+    >
+      {{ beer.name }}
     </li>
+  </ul>
+</div>
+
+<div >
+  <div *ngIf="currentBeer.id">
+    <h4>{{ currentBeer.name }}</h4>
+    <div>
+      <label><strong>Name:</strong></label> {{ currentBeer.name }}
+    </div>
+    <div>
+      <label><strong>Description:</strong></label>
+      {{ currentBeer.description }}
+    </div>
+    <div>
+      <label><strong>Food pairings:</strong></label>
+            <tr *ngFor="let food of currentBeer.foodPairings">
+              <td>{{ food }}</td>
+    </div>
+
+    <a
+      class="badge badge-warning"
+      routerLink="/beers/{{ currentBeer.id }}"
+    > Save as favorite
+    </a>
+  </div>
 </div>
 
 </div>

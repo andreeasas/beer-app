@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { FavoriteBeerListComponent } from './favorite-beer-list/favorite-beer-list.component';
-import { FavoriteBeerFormComponent } from './favorite-beer-form/favorite-beer-form.component';
+import { BeerReviewFormComponent } from './favorite-beer-form/beer-review-form.component';
 import { FavoriteBeerService } from "./service/favorite-beer.service";
 import { BeerListComponent } from './beer-list/beer-list.component';
 import {NgxPaginationModule} from "ngx-pagination";
@@ -14,7 +14,7 @@ import {NgxPaginationModule} from "ngx-pagination";
   declarations: [
     AppComponent,
     FavoriteBeerListComponent,
-    FavoriteBeerFormComponent,
+    BeerReviewFormComponent,
     BeerListComponent
   ],
   imports: [

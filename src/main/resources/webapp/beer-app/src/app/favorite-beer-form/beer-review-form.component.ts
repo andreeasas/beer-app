@@ -6,18 +6,10 @@ import {BeerReview} from "../model/beer-review";
 
 @Component({
   selector: 'app-favorite-beer-form',
-  templateUrl: './favorite-beer-form.component.html',
-  styleUrls: ['./favorite-beer-form.component.css']
+  templateUrl: './beer-review-form.component.html',
+  styleUrls: ['./beer-review-form.component.css']
 })
-export class FavoriteBeerFormComponent implements OnInit {
-
-  // favoriteBeer: FavoriteBeer;
-  //
-  // constructor(  private route: ActivatedRoute,
-  //               private router: Router,
-  //               private favoriteBeerService: FavoriteBeerService) {
-  //   this.favoriteBeer = new FavoriteBeer();
-  // }
+export class BeerReviewFormComponent implements OnInit {
 
   beerReview: BeerReview;
 

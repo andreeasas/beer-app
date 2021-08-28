@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FavoriteBeerFormComponent } from './favorite-beer-form.component';
+import { BeerReviewFormComponent } from './beer-review-form.component';
 
 describe('FavoriteBeerFormComponent', () => {
-  let component: FavoriteBeerFormComponent;
-  let fixture: ComponentFixture<FavoriteBeerFormComponent>;
+  let component: BeerReviewFormComponent;
+  let fixture: ComponentFixture<BeerReviewFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FavoriteBeerFormComponent ]
+      declarations: [ BeerReviewFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FavoriteBeerFormComponent);
+    fixture = TestBed.createComponent(BeerReviewFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

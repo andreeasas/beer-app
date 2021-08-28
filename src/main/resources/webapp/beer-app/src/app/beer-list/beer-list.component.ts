@@ -10,6 +10,9 @@ import {Observable,of, from } from 'rxjs';
 })
 export class BeerListComponent implements OnInit {
 
+  currentIndex = -1;
+  currentBeer: BeerDetails;
+
   beerDetails: BeerDetails[];
   selectedBeer?: BeerDetails;
 
@@ -24,6 +27,11 @@ export class BeerListComponent implements OnInit {
 
   onSelect(beer: BeerDetails): void {
     this.selectedBeer = beer;
+  }
+
+  setActiveBeer(beer:BeerDetails, index: number): void {
+    this.currentBeer = beer;
+    this.currentIndex = index;
   }
 
 }
