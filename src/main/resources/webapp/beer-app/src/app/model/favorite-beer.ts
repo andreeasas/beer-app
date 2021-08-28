@@ -1,8 +1,7 @@
+import {BeerReview} from "./beer-review";
+import {BeerDetails} from "./beer-details";
+
 export class FavoriteBeer {
-  beerId: number;
-  drunkBefore: boolean;
-  whereTasted: string;
-  whenTasted: string;
-  tasteNote: number;
-  comments: string;
+  beerReview:BeerReview;
+  beerDetails:BeerDetails;
 }

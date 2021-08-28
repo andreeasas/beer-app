@@ -22,12 +22,12 @@ public class JsonReview {
     private String userEmail;
     private long beerId;
     private boolean drunkBefore;
-    private String where;
+    private String whereTasted;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate when;
+    private LocalDate whenTasted;
     private int tasteNote;
     private String comments;
 }

@@ -27,8 +27,8 @@ public class JsonSamples {
         jsonReview.setUserEmail(email);
         jsonReview.setBeerId(beerId);
         jsonReview.setDrunkBefore(false);   // should give no details if never tasted
-        jsonReview.setWhen(LocalDate.of(2050, 1, 1)); // day in future
-        jsonReview.setWhere("UK");
+        jsonReview.setWhenTasted(LocalDate.of(2050, 1, 1)); // day in future
+        jsonReview.setWhereTasted("UK");
         jsonReview.setTasteNote(0); // tasteNote out of allowed[min,max] values
         jsonReview.setComments("It was pretty ok for a dinner.");
         return jsonReview;
@@ -39,8 +39,8 @@ public class JsonSamples {
         jsonReview.setUserEmail(email);
         jsonReview.setBeerId(beerId);
         jsonReview.setDrunkBefore(true);
-        jsonReview.setWhen(LocalDate.now());
-        jsonReview.setWhere("UK");
+        jsonReview.setWhenTasted(LocalDate.now());
+        jsonReview.setWhereTasted("UK");
         jsonReview.setTasteNote(tasteNote);
         jsonReview.setComments("It was pretty ok for a dinner.");
         return jsonReview;

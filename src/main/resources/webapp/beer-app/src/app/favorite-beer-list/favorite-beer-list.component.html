@@ -10,12 +10,16 @@
       </thead>
       <tbody>
       <tr *ngFor="let favoriteBeer of favoriteBeers">
-        <td>{{ favoriteBeer.beerId }}</td>
-        <td>{{ favoriteBeer.drunkBefore }}</td>
-        <td>{{ favoriteBeer.whereTasted }}</td>
-        <td>{{ favoriteBeer.whenTasted }}</td>
-        <td>{{ favoriteBeer.tasteNote }}</td>
-        <td>{{ favoriteBeer.comments }}</td>
+<!--        beer details-->
+        <td>{{ favoriteBeer.beerDetails.name }}</td>
+        <td>{{ favoriteBeer.beerDetails.description }}</td>
+        <td>{{ favoriteBeer.beerDetails.foodPairings }}</td>
+<!--        beer review-->
+        <td>{{ favoriteBeer.beerReview.drunkBefore }}</td>
+        <td>{{ favoriteBeer.beerReview.whereTasted }}</td>
+<!--        <td>{{ favoriteBeer.beerReview.whenTasted }}</td>-->
+        <td>{{ favoriteBeer.beerReview.tasteNote }}</td>
+        <td>{{ favoriteBeer.beerReview.comments }}</td>
 <!--        <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>-->
       </tr>
       </tbody>

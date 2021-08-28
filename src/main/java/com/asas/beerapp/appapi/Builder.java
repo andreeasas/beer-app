@@ -10,8 +10,8 @@ public class Builder {
         beerReview.setUserEmail(jsonReview.getUserEmail());
         beerReview.setBeerId(jsonReview.getBeerId());
         beerReview.setDrunkBefore(jsonReview.isDrunkBefore());
-        beerReview.setWhere(jsonReview.getWhere());
-        beerReview.setWhen(jsonReview.getWhen());
+        beerReview.setWhere(jsonReview.getWhereTasted());
+        beerReview.setWhen(jsonReview.getWhenTasted());
         beerReview.setTasteNote(jsonReview.getTasteNote());
         beerReview.setComments(jsonReview.getComments());
         return beerReview;
@@ -24,8 +24,8 @@ public class Builder {
                         .userEmail(beerReview.getUserEmail())
                         .beerId(beerReview.getBeerId())
                         .drunkBefore(beerReview.isDrunkBefore())
-                        .where(beerReview.getWhere())
-                        .when(beerReview.getWhen())
+                        .whereTasted(beerReview.getWhere())
+                        .whenTasted(beerReview.getWhen())
                         .tasteNote(beerReview.getTasteNote())
                         .comments(beerReview.getComments())
                         .build())
