@@ -1,4 +1,53 @@
 
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="searchByCriteria()" #beerSearchForm="ngForm">
+
+      <div class="form-group">
+        <label for="ibuGt">Ibu Gt</label>
+        <input type="text" [(ngModel)]="beerSearchCriteria.ibuGt"
+               class="form-control"
+               id="ibuGt"
+               name="ibuGt"
+               placeholder="10">
+      </div>
+
+      <div class="form-group">
+        <label for="ibuLt">Ibu Lt</label>
+        <input type="text" [(ngModel)]="beerSearchCriteria.ibuLt"
+               class="form-control"
+               id="ibuLt"
+               name="ibuLt"
+               placeholder="30">
+      </div>
+
+      <div class="form-group">
+        <label for="yeast">Yeast</label>
+        <input type="text" [(ngModel)]="beerSearchCriteria.yeast"
+               class="form-control"
+               id="yeast"
+               name="yeast"
+               placeholder="Ale">
+      </div>
+
+      <div class="form-group">
+        <label for="food">Food</label>
+        <input type="text" [(ngModel)]="beerSearchCriteria.food"
+               class="form-control"
+               id="food"
+               name="food"
+               placeholder="spicy food">
+      </div>
+
+      <button type="submit" [disabled]="!beerSearchForm.form.valid"
+              class="btn btn-info">Search
+      </button>
+
+    </form>
+  </div>
+</div>
+
+
 <div class="grid-container">
 
 <div class>
@@ -23,6 +72,14 @@
     <h4>{{ currentBeer.name }}</h4>
     <div>
       <label><strong>Name:</strong></label> {{ currentBeer.name }}
+    </div>
+    <div>
+      <label><strong>Ibu:</strong></label>
+      {{ currentBeer.ibu }}
+    </div>
+    <div>
+      <label><strong>Yeast:</strong></label>
+      {{ currentBeer.yeast }}
     </div>
     <div>
       <label><strong>Description:</strong></label>

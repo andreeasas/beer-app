@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BeerDetails} from "../model/beer-details";
 import { Observable, of, Subject, Subscription, forkJoin } from 'rxjs';
+import {BeerReview} from "../model/beer-review";
+import {BeerSearchCriteria} from "../model/beer-search-criteria";
 
 @Injectable({
   providedIn: 'root'
@@ -17,4 +19,9 @@ export class BeerService {
   public findAll(): Observable<BeerDetails[]> {
     return this.http.get<BeerDetails[]>(this.favoritesUrl);
   }
+
+  public findByCriteria(beerSearchCriteria: BeerSearchCriteria): Observable<BeerDetails[]> {
+    return this.http.post<BeerDetails[]>(this.favoritesUrl, beerSearchCriteria);
+  }
+
 }

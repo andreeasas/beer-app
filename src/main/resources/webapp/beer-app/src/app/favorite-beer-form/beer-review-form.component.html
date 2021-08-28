@@ -1,9 +1,64 @@
+<!--<form class="form-horizontal" [formGroup]="form">-->
+
+<!--  <div class="form-group" [ngClass]="displayFieldCss('email')">-->
+<!--    <div class="col-sm-12">-->
+<!--              <label for="userEmail">User email</label>-->
+<!--              <input type="text" [(ngModel)]="beerReview.userEmail"-->
+<!--                     class="form-control"-->
+<!--                     id="userEmail"-->
+<!--                     name="userEmail"-->
+<!--                     placeholder="Enter your email address"-->
+<!--                     required #userEmail="ngModel">-->
+<!--      <div [hidden]="!userEmail.pristine" class="alert alert-danger">Email is required</div>-->
+<!--&lt;!&ndash;      <label for="userEmail" class="control-label required">User email</label>&ndash;&gt;-->
+<!--&lt;!&ndash;      <input type="text" id="userEmail" class="form-control" formControlName="userEmail">&ndash;&gt;-->
+<!--      <app-display-field-error [displayError]="isFieldValid('userEmail')" errorMsg="Please inform your email">-->
+<!--      </app-display-field-error>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="form-group" [ngClass]="displayFieldCss('email')">-->
+<!--    <div class="col-sm-12">-->
+<!--              <label for="beerId">Beer id</label>-->
+<!--              <input type="number" [(ngModel)]="beerReview.beerId"-->
+<!--                     class="form-control"-->
+<!--                     id="beerId"-->
+<!--                     name="beerId"-->
+<!--                     placeholder="Enter beerId"-->
+<!--                     required #beerId="ngModel">-->
+<!--              <div [hidden]="!beerId.pristine" class="alert alert-danger">Beer id is required</div>-->
+<!--&lt;!&ndash;      <label for="beerId" class="control-label required">Beer id</label>&ndash;&gt;-->
+<!--&lt;!&ndash;      <input type="text" id="beerId" class="form-control" formControlName="beerId">&ndash;&gt;-->
+<!--      <app-display-field-error [displayError]="isFieldValid('beerId')" errorMsg="Please inform beer id">-->
+<!--      </app-display-field-error>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="form-group" [ngClass]="displayFieldCss('email')">-->
+<!--    <div class="col-sm-12">-->
+<!--              <label for="drunkBefore">Have you drunk this beer before?</label><br>-->
+<!--              <input type="checkbox" [(ngModel)]="beerReview.drunkBefore" id="drunkBefore" name="drunkBefore" required #drunkBefore="ngModel">-->
+<!--      <app-display-field-error [displayError]="isFieldValid('drunkBefore')" errorMsg="Mandatory field">-->
+<!--      </app-display-field-error>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--&lt;!&ndash;  <button class="btn btn-primary" (click)="onSubmit()">Submit</button>&ndash;&gt;-->
+<!--        <button type="submit" [disabled]="!form.valid"-->
+<!--                class="btn btn-info">Submit-->
+<!--        </button>-->
+<!--  <button class="btn" (click)="reset()">Reset</button>-->
+
+<!--</form>-->
+
+
+
 <div class="card my-5">
   <div class="card-body">
     <form (ngSubmit)="onSubmit()" #beerReviewForm="ngForm">
 
       <div class="form-group">
-        <label for="userEmail">User email</label>
+        <label for="userEmail">Email</label>
         <input type="text" [(ngModel)]="beerReview.userEmail"
                class="form-control"
                id="userEmail"

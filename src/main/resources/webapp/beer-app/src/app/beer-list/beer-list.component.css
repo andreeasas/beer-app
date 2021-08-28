@@ -5,3 +5,8 @@
   grid-gap: 30px;
 }
 
+.input-w label, .input-w input {
+  float: none;
+  display: inline-block;
+  vertical-align: middle;
+}
