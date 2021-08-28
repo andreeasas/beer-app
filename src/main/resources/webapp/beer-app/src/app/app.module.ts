@@ -8,6 +8,7 @@ import { FavoriteBeerListComponent } from './favorite-beer-list/favorite-beer-li
 import { FavoriteBeerFormComponent } from './favorite-beer-form/favorite-beer-form.component';
 import { FavoriteBeerService } from "./service/favorite-beer.service";
 import { BeerListComponent } from './beer-list/beer-list.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BeerListComponent } from './beer-list/beer-list.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [FavoriteBeerService],
   bootstrap: [AppComponent]

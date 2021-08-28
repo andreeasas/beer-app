@@ -1,3 +1,4 @@
+
 <div class="card my-5">
   <div class="card-body">
     <table class="table table-bordered table-striped">
@@ -5,16 +6,37 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
-        <th scope="col">Email</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let beer of beerDetails">
+      <tr *ngFor="let beer of beerDetails" (click)="onSelect(beer)">
         <td>{{ beer.id }}</td>
         <td>{{ beer.name }}</td>
-        <td>{{ beer.description }}</td>
-        <td>{{ beer.foodPairings }}</td>
+        <!-- TODO add image-->
+        <td></td>
       </tbody>
     </table>
   </div>
+
+  <div *ngIf="selectedBeer">
+    <h2>{{selectedBeer.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{selectedBeer.id}}</div>
+    <div>
+      <label for="beer-name">name: </label>
+      <input id="beer-name" [(ngModel)]="selectedBeer.name" placeholder="name">
+    </div>
+    <div>
+      <label for="beer-description">description: </label>
+      <input id="beer-description" [(ngModel)]="selectedBeer.description" placeholder="description">
+    </div>
+    <div>
+      <label for="beer-food">description: </label>
+      <input id="beer-food" [(ngModel)]="selectedBeer.foodPairings" placeholder="food pairings">
+    </div>
+
+    <li class="list-inline-item">
+      <a routerLink="/addfavoritebeer" class="btn btn-info">Add Favorite Beer</a>
+    </li>
+</div>
+
 </div>
