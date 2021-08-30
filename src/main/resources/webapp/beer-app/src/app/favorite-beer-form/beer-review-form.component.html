@@ -1,58 +1,3 @@
-<!--<form class="form-horizontal" [formGroup]="form">-->
-
-<!--  <div class="form-group" [ngClass]="displayFieldCss('email')">-->
-<!--    <div class="col-sm-12">-->
-<!--              <label for="userEmail">User email</label>-->
-<!--              <input type="text" [(ngModel)]="beerReview.userEmail"-->
-<!--                     class="form-control"-->
-<!--                     id="userEmail"-->
-<!--                     name="userEmail"-->
-<!--                     placeholder="Enter your email address"-->
-<!--                     required #userEmail="ngModel">-->
-<!--      <div [hidden]="!userEmail.pristine" class="alert alert-danger">Email is required</div>-->
-<!--&lt;!&ndash;      <label for="userEmail" class="control-label required">User email</label>&ndash;&gt;-->
-<!--&lt;!&ndash;      <input type="text" id="userEmail" class="form-control" formControlName="userEmail">&ndash;&gt;-->
-<!--      <app-display-field-error [displayError]="isFieldValid('userEmail')" errorMsg="Please inform your email">-->
-<!--      </app-display-field-error>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <div class="form-group" [ngClass]="displayFieldCss('email')">-->
-<!--    <div class="col-sm-12">-->
-<!--              <label for="beerId">Beer id</label>-->
-<!--              <input type="number" [(ngModel)]="beerReview.beerId"-->
-<!--                     class="form-control"-->
-<!--                     id="beerId"-->
-<!--                     name="beerId"-->
-<!--                     placeholder="Enter beerId"-->
-<!--                     required #beerId="ngModel">-->
-<!--              <div [hidden]="!beerId.pristine" class="alert alert-danger">Beer id is required</div>-->
-<!--&lt;!&ndash;      <label for="beerId" class="control-label required">Beer id</label>&ndash;&gt;-->
-<!--&lt;!&ndash;      <input type="text" id="beerId" class="form-control" formControlName="beerId">&ndash;&gt;-->
-<!--      <app-display-field-error [displayError]="isFieldValid('beerId')" errorMsg="Please inform beer id">-->
-<!--      </app-display-field-error>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <div class="form-group" [ngClass]="displayFieldCss('email')">-->
-<!--    <div class="col-sm-12">-->
-<!--              <label for="drunkBefore">Have you drunk this beer before?</label><br>-->
-<!--              <input type="checkbox" [(ngModel)]="beerReview.drunkBefore" id="drunkBefore" name="drunkBefore" required #drunkBefore="ngModel">-->
-<!--      <app-display-field-error [displayError]="isFieldValid('drunkBefore')" errorMsg="Mandatory field">-->
-<!--      </app-display-field-error>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--&lt;!&ndash;  <button class="btn btn-primary" (click)="onSubmit()">Submit</button>&ndash;&gt;-->
-<!--        <button type="submit" [disabled]="!form.valid"-->
-<!--                class="btn btn-info">Submit-->
-<!--        </button>-->
-<!--  <button class="btn" (click)="reset()">Reset</button>-->
-
-<!--</form>-->
-
-
-
 <div class="card my-5">
   <div class="card-body">
     <form (ngSubmit)="onSubmit()" #beerReviewForm="ngForm">
@@ -68,25 +13,57 @@
         <div [hidden]="!userEmail.pristine" class="alert alert-danger">Email is required</div>
       </div>
 
-      <div class="form-group">
-        <label for="beerId">Beer id</label>
-        <input type="number" [(ngModel)]="beerReview.beerId"
-               class="form-control"
-               id="beerId"
-               name="beerId"
-               placeholder="Enter beerId"
-               required #beerId="ngModel">
-        <div [hidden]="!beerId.pristine" class="alert alert-danger">Beer id is required</div>
-      </div>
 
-      <div class="form-group">
-        <label for="drunkBefore">Have you drunk this beer before?</label><br>
-        <input type="checkbox" [(ngModel)]="beerReview.drunkBefore" id="drunkBefore" name="drunkBefore" required #drunkBefore="ngModel">
-        <div [hidden]="!drunkBefore.pristine" class="alert alert-danger">Mandatory to mention</div>
+      <div class="card my-5">
+        <div class="card-body">
+          <h3><b> Add your review </b></h3>
+
+          <div class="form-group">
+            <label for="drunkBefore">Have you drunk this beer before?</label><br>
+            <input type="checkbox" [(ngModel)]="beerReview.drunkBefore" id="drunkBefore" name="drunkBefore">
+          </div>
+
+          <div class="form-group">
+            <label for="whereTasted">Where have you tasted it?</label>
+            <input type="text" [(ngModel)]="beerReview.whereTasted"
+                   class="form-control"
+                   id="whereTasted"
+                   name="whereTasted"
+                   placeholder="Munchen">
+          </div>
+
+<!--          <div class="form-group">-->
+<!--            <label for="whenTasted">When have you tasted it?</label>-->
+<!--            <input type=date [(ngModel)]="beerReview.whenTasted"-->
+<!--                   class="form-control"-->
+<!--                   id="whenTasted"-->
+<!--                   name="whenTasted"-->
+<!--                   placeholder="05/01/2021">-->
+<!--          </div>-->
+
+          <div class="form-group">
+            <label for="tasteNote">Your taste note (1 to 5)</label>
+            <input type="number" [(ngModel)]="beerReview.tasteNote"
+                   class="form-control"
+                   id="tasteNote"
+                   name="tasteNote"
+                   placeholder="4">
+          </div>
+
+          <div class="form-group">
+            <label for="comments">Your comments</label>
+            <input type="text" [(ngModel)]="beerReview.comments"
+                   class="form-control"
+                   id="comments"
+                   name="comments"
+                   placeholder="It was ok for a dinner.">
+          </div>
+
+        </div>
       </div>
 
       <button type="submit" [disabled]="!beerReviewForm.form.valid"
-              class="btn btn-info">Submit
+              class="btn btn-info">Save beer as favorite
       </button>
 
     </form>

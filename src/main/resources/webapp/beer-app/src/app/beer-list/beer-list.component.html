@@ -95,11 +95,10 @@
               <td>{{ food }}</td>
     </div>
 
-    <a
-      class="badge badge-warning"
-      routerLink="/favorites-add/{{ currentBeer.id }}"
-    > Save as favorite
-    </a>
+    <a [routerLink]="['/favorites-add',{beerId:currentBeer.id}]"></a>
+    <button (click)="saveFavorite()" class="btn btn-primary">
+      Save as favorite
+    </button>
   </div>
 </div>
 

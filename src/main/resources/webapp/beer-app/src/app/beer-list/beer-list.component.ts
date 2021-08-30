@@ -20,9 +20,10 @@ export class BeerListComponent implements OnInit {
   currentBeer: Beer;
 
   beers: Beer[];
-  // selectedBeer?: BeerDetails;
 
   constructor(private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
+              private router: Router,
               private beerService: BeerService) {
     this.beerSearchCriteria = new BeerSearchCriteria();
   }
@@ -33,10 +34,6 @@ export class BeerListComponent implements OnInit {
     });
   }
 
-  // onSelect(beer: BeerDetails): void {
-  //   this.selectedBeer = beer;
-  // }
-
   setActiveBeer(beer: Beer, index: number): void {
     this.currentBeer = beer;
     this.currentIndex = index;
@@ -46,5 +43,9 @@ export class BeerListComponent implements OnInit {
     this.beerService.findByCriteria(this.beerSearchCriteria).subscribe(data => {
       this.beers = data;
     });
+  }
+
+  saveFavorite() {
+    this.router.navigate(['/favorites-add', this.currentBeer.id]);
   }
 }

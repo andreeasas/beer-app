@@ -75,7 +75,7 @@ Content-Type: application/json
 
 {
   "userEmail": "joedoe@gmail.com",
-  "beerId": 8,
+  "beerId": 3,
   "drunkBefore": 1,
   "where": "Munchen",
   "when": "01/04/2019",

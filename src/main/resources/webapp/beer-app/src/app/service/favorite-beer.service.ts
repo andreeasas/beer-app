@@ -15,10 +15,6 @@ export class FavoriteBeerService {
     this.favoritesUrl = 'http://localhost:8080/api.beer.app/favorites';
   }
 
-  public findAll(): Observable<FavoriteBeer[]> {
-    return this.http.get<FavoriteBeer[]>(this.favoritesUrl);
-  }
-
   public findByEmail(userEmail: string): Observable<FavoriteBeer[]> {
     return this.http.get<FavoriteBeer[]>(this.favoritesUrl+"/"+userEmail);
   }
