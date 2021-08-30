@@ -2,6 +2,13 @@ package com.asas.beerapp.controller;
 
 import com.asas.beerapp.beerapp.api.JsonBeerSearchCriteria;
 import com.asas.beerapp.punkapi.JsonBeer;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,6 +42,7 @@ public class BeerController {
 
     private static final String PUNKAPI_URL = "https://api.punkapi.com/v2/beers";
 
+    @Operation(summary = "Get all beers")
     @RequestMapping(
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -46,6 +54,15 @@ public class BeerController {
         return Arrays.asList(jsonBeers);
     }
 
+    @Operation(summary = "Get beers by ids")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Get beers by ids",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = JsonBeer.class))}),
+            @ApiResponse(responseCode = "400", description = "Invalid data supplied",
+                    content = @Content),
+            @ApiResponse(responseCode = "404", description = "Beers not found",
+                    content = @Content)})
     @RequestMapping(
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE,
@@ -58,6 +75,13 @@ public class BeerController {
         return Arrays.asList(jsonBeers);
     }
 
+    @Operation(summary = "Get beers by criteria")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found beers by criteria",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = JsonBeer.class))}),
+            @ApiResponse(responseCode = "400", description = "Invalid data supplied",
+                    content = @Content)})
     @RequestMapping(
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -83,8 +107,8 @@ public class BeerController {
 
         JsonBeer[] jsonBeers = restTemplate.getForObject(PUNKAPI_URL + queryParams, JsonBeer[].class);
         assert jsonBeers != null;
-        String[] ids = Arrays.stream(jsonBeers).map(jsonBeer -> ""+(long)jsonBeer.getId()).toArray(value -> new String[value]);
-        logger.log(Level.INFO, "retrieved beers for params "+queryParams+ " = "+ids.toString());
+        String[] ids = Arrays.stream(jsonBeers).map(jsonBeer -> "" + (long) jsonBeer.getId()).toArray(value -> new String[value]);
+        logger.log(Level.INFO, "retrieved beers for params " + queryParams + " = " + Arrays.toString(ids));
         return Arrays.asList(jsonBeers);
     }
 

@@ -5,6 +5,8 @@ import com.asas.beerapp.beerapp.api.JsonFavoriteBeer;
 import com.asas.beerapp.model.FavoriteBeer;
 import com.asas.beerapp.punkapi.JsonBeer;
 import com.asas.beerapp.service.BeerReviewService;
+import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,7 +37,7 @@ public class FavoriteBeerController {
 
     private final BeerReviewService beerReviewService;
 
-    private final BeerController  beerController;
+    private final BeerController beerController;
 
     @Autowired
     public FavoriteBeerController(BeerReviewService beerReviewService, BeerController beerController) {
@@ -43,6 +45,7 @@ public class FavoriteBeerController {
         this.beerController = beerController;
     }
 
+    @Operation(summary = "Save favorite beer")
     @RequestMapping(
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE
@@ -50,9 +53,10 @@ public class FavoriteBeerController {
     public void insertNewReview(@RequestBody JsonFavoriteBeer jsonFavoriteBeer) {
         FavoriteBeer favoriteBeer = buildBeerReview(jsonFavoriteBeer);
         beerReviewService.insertBeerReview(favoriteBeer);
-        logger.log(Level.INFO, "save favorite beer "+ jsonFavoriteBeer.getBeerId()+ " for user with email "+jsonFavoriteBeer.getUserEmail());
+        logger.log(Level.INFO, "save favorite beer " + jsonFavoriteBeer.getBeerId() + " for user with email " + jsonFavoriteBeer.getUserEmail());
     }
 
+    @Operation(summary = "Get favorite beers by user email")
     @RequestMapping(
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE,
@@ -75,7 +79,7 @@ public class FavoriteBeerController {
             jsonFavoriteBeerResponses.add(favoriteBeer);
         });
 
-        logger.log(Level.INFO, "get favorites for user with email "+email+" retrieved beers with ids "+ids);
+        logger.log(Level.INFO, "get favorites for user with email " + email + " retrieved beers with ids " + ids);
         return jsonFavoriteBeerResponses;
     }
 
