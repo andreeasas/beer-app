@@ -1,10 +1,7 @@
 export class BeerDetails {
   id:number;
   name:string;
-  // ibu:number;
-  // // TODO get beer ingredients
-  // yeast:string;
   description:string;
-  imageUrl:string;
+  imageUrl:string | null;
   foodPairings:string[];
 }

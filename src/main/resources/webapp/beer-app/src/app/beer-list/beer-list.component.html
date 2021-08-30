@@ -93,6 +93,7 @@
       <label><strong>Food pairings:</strong></label>
             <tr *ngFor="let food of currentBeer.foodPairings">
               <td>{{ food }}</td>
+            </tr>
     </div>
 
     <a [routerLink]="['/favorites-add',{beerId:currentBeer.id}]"></a>

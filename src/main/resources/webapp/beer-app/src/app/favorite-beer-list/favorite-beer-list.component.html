@@ -7,7 +7,7 @@
                style="width: 300px" [(ngModel)]="userEmail"/>
       </div>
       <div class="search-column">
-        <button (click)="changeUserEmail()" class="btn btn-primary">
+        <button (click)="onSearch()" class="btn btn-primary">
           Search
         </button>
       </div>
@@ -16,50 +16,51 @@
   </div>
 </div>
 
+
 <div class>
-  <h4>Beers List</h4>
-  <ul class="list-group">
-    <li
-      class="list-group-item"
-      *ngFor="
-          let favorite of favoriteBeers
-          let i = index
-        "
-      [class.active]="i == currentIndex"
-      (click)="setActiveFavorite(favorite, i)"
-    >
-      console.log(favorite);
-      {{ favorite.beerDetails.name }}
+  <h4>My favorites</h4>
+  <ul class="list">
+    <li class="column" *ngFor="let favorite of favoriteBeers">
+
+      <div class="card my-5">
+        <div class="card-body">
+
+          <div class="fix-with-scroll">
+            <b>{{ favorite.jsonBeerDetails.name}}</b>
+            <div>
+              <label><strong>description:</strong></label> {{ favorite.jsonBeerDetails.description }}
+            </div>
+            <div>
+              <label><strong>food pairings:</strong></label>
+              <tr *ngFor="let food of favorite.jsonBeerDetails.foodPairings">
+                <td>{{ food }}</td>
+              </tr>
+            </div>
+          </div>
+
+          <div class="card my-5">
+            <b>review</b>
+            <div>
+              <label><strong>drunk before:</strong></label> {{ favorite.jsonReview.drunkBefore }}
+            </div>
+            <div>
+              <label><strong>where tasted:</strong></label> {{ favorite.jsonReview.whereTasted }}
+            </div>
+            <!--            <div>-->
+            <!--              <label><strong>when tasted:</strong></label> {{ favorite.jsonReview.whenTasted }}-->
+            <!--            </div>-->
+            <div>
+              <label><strong>taste note:</strong></label> {{ favorite.jsonReview.tasteNote }}
+            </div>
+            <div>
+              <label><strong>comments:</strong></label> {{ favorite.jsonReview.comments }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </li>
   </ul>
 </div>
 
-
-<!--<div class="card my-5">-->
-<!--  <div class="card-body">-->
-<!--    <table class="table table-bordered table-striped">-->
-<!--      <thead class="thead-dark">-->
-<!--      <tr>-->
-<!--        <th scope="col">#</th>-->
-<!--        <th scope="col">Name</th>-->
-<!--        <th scope="col">Email</th>-->
-<!--      </tr>-->
-<!--      </thead>-->
-<!--      <tbody>-->
-<!--      <tr *ngFor="let favoriteBeer of favoriteBeers">-->
-<!--&lt;!&ndash;        beer details&ndash;&gt;-->
-<!--        <td>{{ favoriteBeer.beerDetails.name }}</td>-->
-<!--        <td>{{ favoriteBeer.beerDetails.description }}</td>-->
-<!--&lt;!&ndash;        <td>{{ favoriteBeer.beerDetails.foodPairings }}</td>&ndash;&gt;-->
-<!--&lt;!&ndash;        beer review&ndash;&gt;-->
-<!--        <td>{{ favoriteBeer.beerReview.drunkBefore }}</td>-->
-<!--        <td>{{ favoriteBeer.beerReview.whereTasted }}</td>-->
-<!--&lt;!&ndash;        <td>{{ favoriteBeer.beerReview.whenTasted }}</td>&ndash;&gt;-->
-<!--&lt;!&ndash;        <td>{{ favoriteBeer.beerReview.tasteNote }}</td>&ndash;&gt;-->
-<!--&lt;!&ndash;        <td>{{ favoriteBeer.beerReview.comments }}</td>&ndash;&gt;-->
-<!--&lt;!&ndash;        <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>&ndash;&gt;-->
-<!--      </tr>-->
-<!--      </tbody>-->
-<!--    </table>-->
-<!--  </div>-->
-<!--</div>-->

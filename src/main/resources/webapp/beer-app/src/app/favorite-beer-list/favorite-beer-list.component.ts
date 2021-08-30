@@ -20,8 +20,12 @@ export class FavoriteBeerListComponent implements OnInit {
 
   ngOnInit(): void {
     this.favoriteBeerService.findByEmail("joedoe@gmail.com").subscribe(data => {
-      console.log(data);
+      console.log(data.length);
+      console.log(data.forEach(value => {console.log(value)}));
       this.favoriteBeers = data;
+
+      console.log(this.favoriteBeers[0].jsonBeerDetails.name);
+      console.log(this.favoriteBeers[0].jsonReview.userEmail);
     });
   }
 
@@ -30,7 +34,7 @@ export class FavoriteBeerListComponent implements OnInit {
     this.currentIndex=index;
   }
 
-  changeUserEmail() {
+  onSearch() {
     this.favoriteBeerService.findByEmail(this.userEmail).subscribe(data => {
       console.log(data);
       this.favoriteBeers = data;

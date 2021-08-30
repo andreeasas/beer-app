@@ -4,7 +4,7 @@ export class BeerReview {
   beerId:number;
   drunkBefore:boolean;
   whereTasted:string;
-  whenTasted:string;
+  // whenTasted:string;
   tasteNote:number;
   comments:string;
 }
