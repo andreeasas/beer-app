@@ -5,9 +5,9 @@ import {BeerListComponent} from "./beer-list/beer-list.component";
 import {BeerReviewFormComponent} from "./favorite-beer-form/beer-review-form.component";
 
 const routes: Routes = [
-  // {path: 'favorites', component: FavoriteBeerListComponent},
+  {path: 'favorites-list', component: FavoriteBeerListComponent},
   {path: 'beers', component: BeerListComponent},
-  {path: 'favorites', component: BeerReviewFormComponent}
+  {path: 'favorites-add', component: BeerReviewFormComponent}
 ];
 
 @NgModule({

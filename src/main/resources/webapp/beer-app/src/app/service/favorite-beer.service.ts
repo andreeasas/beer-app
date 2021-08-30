@@ -19,6 +19,10 @@ export class FavoriteBeerService {
     return this.http.get<FavoriteBeer[]>(this.favoritesUrl);
   }
 
+  public findByEmail(userEmail: string): Observable<FavoriteBeer[]> {
+    return this.http.get<FavoriteBeer[]>(this.favoritesUrl+"/"+userEmail);
+  }
+
   public save(beerReview: BeerReview) {
     return this.http.post<BeerReview>(this.favoritesUrl, beerReview);
   }

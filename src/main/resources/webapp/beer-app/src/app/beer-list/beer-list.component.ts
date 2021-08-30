@@ -5,6 +5,7 @@ import {Observable, of, from} from 'rxjs';
 import {BeerSearchCriteria} from "../model/beer-search-criteria";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder} from "@angular/forms";
+import {Beer} from "../model/beer";
 
 @Component({
   selector: 'app-beer-list',
@@ -16,10 +17,10 @@ export class BeerListComponent implements OnInit {
   beerSearchCriteria: BeerSearchCriteria;
 
   currentIndex = -1;
-  currentBeer: BeerDetails;
+  currentBeer: Beer;
 
-  beerDetails: BeerDetails[];
-  selectedBeer?: BeerDetails;
+  beers: Beer[];
+  // selectedBeer?: BeerDetails;
 
   constructor(private formBuilder: FormBuilder,
               private beerService: BeerService) {
@@ -28,22 +29,22 @@ export class BeerListComponent implements OnInit {
 
   ngOnInit(): void {
     this.beerService.findAll().subscribe(data => {
-      this.beerDetails = data;
+      this.beers = data;
     });
   }
 
-  onSelect(beer: BeerDetails): void {
-    this.selectedBeer = beer;
-  }
+  // onSelect(beer: BeerDetails): void {
+  //   this.selectedBeer = beer;
+  // }
 
-  setActiveBeer(beer: BeerDetails, index: number): void {
+  setActiveBeer(beer: Beer, index: number): void {
     this.currentBeer = beer;
     this.currentIndex = index;
   }
 
   searchByCriteria() {
     this.beerService.findByCriteria(this.beerSearchCriteria).subscribe(data => {
-      this.beerDetails = data;
+      this.beers = data;
     });
   }
 }

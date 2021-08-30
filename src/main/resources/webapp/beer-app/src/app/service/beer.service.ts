@@ -4,24 +4,25 @@ import { BeerDetails} from "../model/beer-details";
 import { Observable, of, Subject, Subscription, forkJoin } from 'rxjs';
 import {BeerReview} from "../model/beer-review";
 import {BeerSearchCriteria} from "../model/beer-search-criteria";
+import {Beer} from "../model/beer";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BeerService {
 
-  private readonly favoritesUrl: string;
+  private readonly beersUrl: string;
 
   constructor(private http: HttpClient) {
-    this.favoritesUrl = 'http://localhost:8080/api.beer.app/beers';
+    this.beersUrl = 'http://localhost:8080/api.beer.app/beers';
   }
 
-  public findAll(): Observable<BeerDetails[]> {
-    return this.http.get<BeerDetails[]>(this.favoritesUrl);
+  public findAll(): Observable<Beer[]> {
+    return this.http.get<Beer[]>(this.beersUrl);
   }
 
-  public findByCriteria(beerSearchCriteria: BeerSearchCriteria): Observable<BeerDetails[]> {
-    return this.http.post<BeerDetails[]>(this.favoritesUrl, beerSearchCriteria);
+  public findByCriteria(beerSearchCriteria: BeerSearchCriteria): Observable<Beer[]> {
+    return this.http.post<Beer[]>(this.beersUrl, beerSearchCriteria);
   }
 
 }
