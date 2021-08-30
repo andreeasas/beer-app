@@ -15,6 +15,7 @@ public class BeerReview implements Serializable {
     @GeneratedValue
     private long id;
 
+    @NotNull
     @Email
     private String userEmail;
 

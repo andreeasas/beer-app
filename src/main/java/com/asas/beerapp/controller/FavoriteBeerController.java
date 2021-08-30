@@ -1,7 +1,7 @@
 package com.asas.beerapp.controller;
 
-import com.asas.beerapp.appapi.JsonFavoriteBeer;
-import com.asas.beerapp.appapi.JsonReview;
+import com.asas.beerapp.beerapp.api.JsonFavoriteBeer;
+import com.asas.beerapp.beerapp.api.JsonReview;
 import com.asas.beerapp.model.BeerReview;
 import com.asas.beerapp.punkapi.JsonBeer;
 import com.asas.beerapp.service.BeerReviewService;
@@ -16,8 +16,8 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static com.asas.beerapp.appapi.Builder.buildBeerReview;
-import static com.asas.beerapp.appapi.Builder.buildFavoriteBeer;
+import static com.asas.beerapp.beerapp.api.Builder.buildBeerReview;
+import static com.asas.beerapp.beerapp.api.Builder.buildFavoriteBeer;
 
 @Validated
 @RestController

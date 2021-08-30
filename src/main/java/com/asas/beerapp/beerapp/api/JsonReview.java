@@ -1,4 +1,4 @@
-package com.asas.beerapp.appapi;
+package com.asas.beerapp.beerapp.api;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

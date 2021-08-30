@@ -1,7 +1,7 @@
 package com.asas.beerapp.integration.tests;
 
 import com.asas.beerapp.client.proxy.BeerController;
-import com.asas.beerapp.appapi.JsonBeerSearchCriteria;
+import com.asas.beerapp.beerapp.api.JsonBeerSearchCriteria;
 import com.asas.beerapp.punkapi.JsonBeer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +49,8 @@ public class BeersIntegrationTest {
         JsonBeerSearchCriteria jsonSearchCriteria = JsonBeerSearchCriteria.builder()
                 .ibuGt(8)
                 .ibuLt(40)
-                .yeast("Ale")
-                .food("spicy food")
+                .yeast("American Ale")
+                .food("spicy beef")
                 .build();
 
         // when

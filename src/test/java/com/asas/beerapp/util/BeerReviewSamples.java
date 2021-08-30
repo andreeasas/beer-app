@@ -27,7 +27,7 @@ public class BeerReviewSamples {
         beerReview.setUserEmail(email);
         beerReview.setBeerId(beerId);
         beerReview.setDrunkBefore(true);
-        beerReview.setWhen(LocalDate.now());
+//        beerReview.setWhen(LocalDate.now());
         beerReview.setWhere("UK");
         beerReview.setTasteNote(tasteNote);
         beerReview.setComments("It was pretty ok for a dinner.");

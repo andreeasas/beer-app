@@ -1,4 +1,4 @@
-package com.asas.beerapp.appapi;
+package com.asas.beerapp.beerapp.api;
 
 import com.asas.beerapp.model.BeerReview;
 import com.asas.beerapp.punkapi.JsonBeer;

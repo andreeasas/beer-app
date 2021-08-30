@@ -1,6 +1,6 @@
 package com.asas.beerapp.controller;
 
-import com.asas.beerapp.appapi.JsonBeerSearchCriteria;
+import com.asas.beerapp.beerapp.api.JsonBeerSearchCriteria;
 import com.asas.beerapp.punkapi.JsonBeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -64,11 +64,11 @@ public class BeerController {
         if (jsonBeerSearchCriteria.getIbuLt()!=0){
             criteria.add("ibu_lt="+ jsonBeerSearchCriteria.getIbuLt());
         }
-        if(jsonBeerSearchCriteria.getYeast()!=null){
+        if(jsonBeerSearchCriteria.getYeast()!=null && !jsonBeerSearchCriteria.getYeast().trim().isEmpty()){
             String yeast = jsonBeerSearchCriteria.getYeast().replace(' ', '_');
             criteria.add("yeast="+yeast);
         }
-        if (jsonBeerSearchCriteria.getFood()!=null){
+        if (jsonBeerSearchCriteria.getFood()!=null && !jsonBeerSearchCriteria.getFood().trim().isEmpty()){
             String food = jsonBeerSearchCriteria.getFood().replace(' ', '_');
             criteria.add("food="+food);
         }

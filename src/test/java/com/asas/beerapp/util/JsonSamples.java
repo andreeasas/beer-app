@@ -1,6 +1,6 @@
 package com.asas.beerapp.util;
 
-import com.asas.beerapp.appapi.JsonReview;
+import com.asas.beerapp.beerapp.api.JsonReview;
 
 import java.time.LocalDate;
 

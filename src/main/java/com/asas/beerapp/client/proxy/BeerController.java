@@ -1,6 +1,6 @@
 package com.asas.beerapp.client.proxy;
 
-import com.asas.beerapp.appapi.JsonBeerSearchCriteria;
+import com.asas.beerapp.beerapp.api.JsonBeerSearchCriteria;
 import com.asas.beerapp.punkapi.JsonBeer;
 import org.springframework.web.bind.annotation.RequestBody;
 
