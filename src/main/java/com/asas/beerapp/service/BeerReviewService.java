@@ -1,7 +1,7 @@
 package com.asas.beerapp.service;
 
-import com.asas.beerapp.model.BeerReview;
-import com.asas.beerapp.repository.BeerReviewRepository;
+import com.asas.beerapp.model.FavoriteBeer;
+import com.asas.beerapp.repository.FavoriteBeerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -12,32 +12,32 @@ import java.util.List;
 @Service
 public class BeerReviewService {
 
-    private BeerReviewRepository beerReviewRepository;
+    private FavoriteBeerRepository favoriteBeerRepository;
 
     @Autowired
-    public BeerReviewService(BeerReviewRepository beerReviewRepository) {
-        this.beerReviewRepository = beerReviewRepository;
+    public BeerReviewService(FavoriteBeerRepository favoriteBeerRepository) {
+        this.favoriteBeerRepository = favoriteBeerRepository;
     }
 
-    public List<BeerReview> selectAllReviews() {
-        return beerReviewRepository.findAll(Sort.by(Sort.Direction.ASC, "beerId"));
+    public List<FavoriteBeer> selectAllReviews() {
+        return favoriteBeerRepository.findAll(Sort.by(Sort.Direction.ASC, "beerId"));
     }
 
-    public List<BeerReview> selectAllReviewsByEmail(String email) {
-        return beerReviewRepository.findByUserEmail(email);
+    public List<FavoriteBeer> selectAllReviewsByEmail(String email) {
+        return favoriteBeerRepository.findByUserEmail(email);
     }
 
-    public BeerReview insertBeerReview(BeerReview beerReview) {
-        return beerReviewRepository.save(beerReview);
+    public FavoriteBeer insertBeerReview(FavoriteBeer favoriteBeer) {
+        return favoriteBeerRepository.save(favoriteBeer);
     }
-    public void updateBeerReview(BeerReview beerReview) {
-        beerReviewRepository.findById(beerReview.getId()).orElseThrow(() -> new NotFoundException("Beer review " + beerReview.getId() + " not found"));
-        beerReviewRepository.save(beerReview);
+    public void updateBeerReview(FavoriteBeer favoriteBeer) {
+        favoriteBeerRepository.findById(favoriteBeer.getId()).orElseThrow(() -> new NotFoundException("Beer review " + favoriteBeer.getId() + " not found"));
+        favoriteBeerRepository.save(favoriteBeer);
     }
 
     public void removeBeerReview(long id) {
-        beerReviewRepository.findById(id).orElseThrow(() -> new NotFoundException("Beer review " + id + " not found"));
-        beerReviewRepository.deleteById(id);
+        favoriteBeerRepository.findById(id).orElseThrow(() -> new NotFoundException("Beer review " + id + " not found"));
+        favoriteBeerRepository.deleteById(id);
     }
 
 }

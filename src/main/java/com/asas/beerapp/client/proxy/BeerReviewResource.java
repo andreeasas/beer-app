@@ -1,6 +1,6 @@
 package com.asas.beerapp.client.proxy;
 
-import com.asas.beerapp.model.BeerReview;
+import com.asas.beerapp.model.FavoriteBeer;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
@@ -18,17 +18,17 @@ public interface BeerReviewResource {
     @GET
     @Produces(APPLICATION_JSON_VALUE)
     @Path("{email}")
-    List<BeerReview> fetchReviewsByEmail(@PathParam("email") String email);
+    List<FavoriteBeer> fetchReviewsByEmail(@PathParam("email") String email);
 
     @POST
     @Produces(APPLICATION_JSON_VALUE)
     @Consumes(APPLICATION_JSON_VALUE)
-    BeerReview insertNewReview(@Valid @RequestBody BeerReview beerReview);
+    FavoriteBeer insertNewReview(@Valid @RequestBody FavoriteBeer favoriteBeer);
 
     @PUT
     @Produces(APPLICATION_JSON_VALUE)
     @Consumes(APPLICATION_JSON_VALUE)
-    void updateReview(BeerReview beerReview);
+    void updateReview(FavoriteBeer favoriteBeer);
 
     @DELETE
     @Produces(APPLICATION_JSON_VALUE)

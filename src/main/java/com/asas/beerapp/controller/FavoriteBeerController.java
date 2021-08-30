@@ -1,10 +1,13 @@
 package com.asas.beerapp.controller;
 
+import com.asas.beerapp.beerapp.api.JsonFavoriteBeerResponse;
 import com.asas.beerapp.beerapp.api.JsonFavoriteBeer;
-import com.asas.beerapp.beerapp.api.JsonReview;
-import com.asas.beerapp.model.BeerReview;
+import com.asas.beerapp.model.FavoriteBeer;
 import com.asas.beerapp.punkapi.JsonBeer;
 import com.asas.beerapp.service.BeerReviewService;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -27,6 +30,8 @@ import static com.asas.beerapp.beerapp.api.Builder.buildFavoriteBeer;
 @CrossOrigin(origins = "${frontend.url}")
 public class FavoriteBeerController {
 
+    private Logger logger = LogManager.getLogger(FavoriteBeerController.class);
+
     private final BeerReviewService beerReviewService;
 
     private final BeerController  beerController;
@@ -41,9 +46,10 @@ public class FavoriteBeerController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    public void insertNewReview(@RequestBody JsonReview jsonReview) {
-        BeerReview beerReview = buildBeerReview(jsonReview);
-        beerReviewService.insertBeerReview(beerReview);
+    public void insertNewReview(@RequestBody JsonFavoriteBeer jsonFavoriteBeer) {
+        FavoriteBeer favoriteBeer = buildBeerReview(jsonFavoriteBeer);
+        beerReviewService.insertBeerReview(favoriteBeer);
+        logger.log(Level.INFO, "save favorite beer "+ jsonFavoriteBeer.getBeerId());
     }
 
     @RequestMapping(
@@ -51,24 +57,24 @@ public class FavoriteBeerController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             path = "{email}"
     )
-    public List<JsonFavoriteBeer> fetchFavoritesByEmail(@PathVariable("email") String email) {
-        List<BeerReview> beerReviews = beerReviewService.selectAllReviewsByEmail(email);
-        List<String> beerIds = beerReviews.stream().map(beerReview -> beerReview.getBeerId() + "").collect(Collectors.toList());
+    public List<JsonFavoriteBeerResponse> fetchFavoritesByEmail(@PathVariable("email") String email) {
+        List<FavoriteBeer> favoriteBeers = beerReviewService.selectAllReviewsByEmail(email);
+        List<String> beerIds = favoriteBeers.stream().map(beerReview -> beerReview.getBeerId() + "").collect(Collectors.toList());
         String ids = String.join("|", beerIds);
 
         List<JsonBeer> jsonBeers = beerController.getBeersByIds(ids);
         Map<Long, JsonBeer> beers = jsonBeers.stream().collect(Collectors.toMap(JsonBeer::getId, Function.identity()));
 
         // build response
-        ArrayList<JsonFavoriteBeer> jsonFavoriteBeers = new ArrayList<>();
-        beerReviews.forEach(beerReview -> {
+        ArrayList<JsonFavoriteBeerResponse> jsonFavoriteBeerResponses = new ArrayList<>();
+        favoriteBeers.forEach(beerReview -> {
             JsonBeer jsonBeer = beers.get(beerReview.getBeerId());
 
-            JsonFavoriteBeer favoriteBeer = buildFavoriteBeer(beerReview, jsonBeer);
-            jsonFavoriteBeers.add(favoriteBeer);
+            JsonFavoriteBeerResponse favoriteBeer = buildFavoriteBeer(beerReview, jsonBeer);
+            jsonFavoriteBeerResponses.add(favoriteBeer);
         });
 
-        return jsonFavoriteBeers;
+        return jsonFavoriteBeerResponses;
     }
 
 }

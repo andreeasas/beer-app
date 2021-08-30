@@ -1,6 +1,6 @@
 package com.asas.beerapp.repository;
 
-import com.asas.beerapp.model.BeerReview;
+import com.asas.beerapp.model.FavoriteBeer;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +11,10 @@ import java.util.List;
 import static com.asas.beerapp.util.BeerReviewSamples.*;
 
 @DataJpaTest
-class BeerReviewRepositoryTest {
+class FavoriteBeerRepositoryTest {
 
     @Autowired
-    BeerReviewRepository reviewRepository;
+    FavoriteBeerRepository reviewRepository;
 
     @Test
     void shouldFindByUserEmailAndTasteNoteGreaterThanEqual() {
@@ -27,7 +27,7 @@ class BeerReviewRepositoryTest {
         reviewRepository.save(createReviewWithRating(secondEmail, 3, 4));
 
         // when
-        List<BeerReview> reviewsByEmailAndTaste = reviewRepository.findByUserEmailAndTasteNoteGreaterThanEqual(defaultEmail, 3);
+        List<FavoriteBeer> reviewsByEmailAndTaste = reviewRepository.findByUserEmailAndTasteNoteGreaterThanEqual(defaultEmail, 3);
 
         // then
         Assertions.assertThat(reviewsByEmailAndTaste.size()).isEqualTo(2);

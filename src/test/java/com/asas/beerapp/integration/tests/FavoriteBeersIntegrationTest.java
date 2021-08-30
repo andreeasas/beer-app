@@ -1,8 +1,8 @@
 package com.asas.beerapp.integration.tests;
 
 import com.asas.beerapp.client.proxy.FavoriteBeerController;
-import com.asas.beerapp.beerapp.api.JsonFavoriteBeer;
-import com.asas.beerapp.repository.BeerReviewRepository;
+import com.asas.beerapp.beerapp.api.JsonFavoriteBeerResponse;
+import com.asas.beerapp.repository.FavoriteBeerRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class FavoriteBeersIntegrationTest {
     private FavoriteBeerController favoriteBeerController;
 
     @Autowired
-    private BeerReviewRepository reviewRepository; // for cleanup only
+    private FavoriteBeerRepository reviewRepository; // for cleanup only
 
     @AfterEach
     void tearDown() {
@@ -48,8 +48,8 @@ public class FavoriteBeersIntegrationTest {
         favoriteBeerController.insertNewReview(createJsonReviewWithRating(defaultEmail, 2, 5));
 
         // then
-        List<JsonFavoriteBeer> jsonFavoriteBeers = favoriteBeerController.fetchFavoritesByEmail(defaultEmail);
-        assertThat(jsonFavoriteBeers.size()).isEqualTo(2);
+        List<JsonFavoriteBeerResponse> jsonFavoriteBeerResponses = favoriteBeerController.fetchFavoritesByEmail(defaultEmail);
+        assertThat(jsonFavoriteBeerResponses.size()).isEqualTo(2);
     }
 
     @Test
@@ -63,14 +63,14 @@ public class FavoriteBeersIntegrationTest {
         favoriteBeerController.insertNewReview(createJsonReviewNotDrunk(thirdEmail, 2));
 
         // when
-        List<JsonFavoriteBeer> jsonFavoriteBeers = favoriteBeerController.fetchFavoritesByEmail(defaultEmail);
+        List<JsonFavoriteBeerResponse> jsonFavoriteBeerResponses = favoriteBeerController.fetchFavoritesByEmail(defaultEmail);
 
         //then
-        assertThat(jsonFavoriteBeers.size()).isEqualTo(2);
-        assertThat(jsonFavoriteBeers.get(0).getJsonReview().getUserEmail()).isEqualTo(defaultEmail);
-        assertThat(jsonFavoriteBeers.get(0).getJsonBeerDetails().getId()).isIn(1L, 2L);
-        assertThat(jsonFavoriteBeers.get(1).getJsonReview().getUserEmail()).isEqualTo(defaultEmail);
-        assertThat(jsonFavoriteBeers.get(1).getJsonBeerDetails().getId()).isIn(1L, 2L);
+        assertThat(jsonFavoriteBeerResponses.size()).isEqualTo(2);
+        assertThat(jsonFavoriteBeerResponses.get(0).getJsonFavoriteBeer().getUserEmail()).isEqualTo(defaultEmail);
+        assertThat(jsonFavoriteBeerResponses.get(0).getJsonBeerDetails().getId()).isIn(1L, 2L);
+        assertThat(jsonFavoriteBeerResponses.get(1).getJsonFavoriteBeer().getUserEmail()).isEqualTo(defaultEmail);
+        assertThat(jsonFavoriteBeerResponses.get(1).getJsonBeerDetails().getId()).isIn(1L, 2L);
     }
 
 }

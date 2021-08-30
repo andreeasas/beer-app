@@ -1,33 +1,33 @@
 package com.asas.beerapp.beerapp.api;
 
-import com.asas.beerapp.model.BeerReview;
+import com.asas.beerapp.model.FavoriteBeer;
 import com.asas.beerapp.punkapi.JsonBeer;
 
 public class Builder {
 
-    public static BeerReview buildBeerReview(JsonReview jsonReview) {
-        BeerReview beerReview = new BeerReview();
-        beerReview.setUserEmail(jsonReview.getUserEmail());
-        beerReview.setBeerId(jsonReview.getBeerId());
-        beerReview.setDrunkBefore(jsonReview.isDrunkBefore());
-        beerReview.setWhere(jsonReview.getWhereTasted());
-        beerReview.setWhen(jsonReview.getWhenTasted());
-        beerReview.setTasteNote(jsonReview.getTasteNote());
-        beerReview.setComments(jsonReview.getComments());
-        return beerReview;
+    public static FavoriteBeer buildBeerReview(JsonFavoriteBeer jsonFavoriteBeer) {
+        FavoriteBeer favoriteBeer = new FavoriteBeer();
+        favoriteBeer.setUserEmail(jsonFavoriteBeer.getUserEmail());
+        favoriteBeer.setBeerId(jsonFavoriteBeer.getBeerId());
+        favoriteBeer.setDrunkBefore(jsonFavoriteBeer.isDrunkBefore());
+        favoriteBeer.setWhere(jsonFavoriteBeer.getWhereTasted());
+        favoriteBeer.setWhen(jsonFavoriteBeer.getWhenTasted());
+        favoriteBeer.setTasteNote(jsonFavoriteBeer.getTasteNote());
+        favoriteBeer.setComments(jsonFavoriteBeer.getComments());
+        return favoriteBeer;
     }
 
-    public static JsonFavoriteBeer buildFavoriteBeer(BeerReview beerReview, JsonBeer jsonBeer) {
-        JsonFavoriteBeer jsonFavoriteBeer = JsonFavoriteBeer.builder()
-                .jsonReview(JsonReview.builder()
-                        .id(beerReview.getId())
-                        .userEmail(beerReview.getUserEmail())
-                        .beerId(beerReview.getBeerId())
-                        .drunkBefore(beerReview.isDrunkBefore())
-                        .whereTasted(beerReview.getWhere())
-                        .whenTasted(beerReview.getWhen())
-                        .tasteNote(beerReview.getTasteNote())
-                        .comments(beerReview.getComments())
+    public static JsonFavoriteBeerResponse buildFavoriteBeer(FavoriteBeer favoriteBeer, JsonBeer jsonBeer) {
+        JsonFavoriteBeerResponse jsonFavoriteBeerResponse = JsonFavoriteBeerResponse.builder()
+                .jsonFavoriteBeer(JsonFavoriteBeer.builder()
+                        .id(favoriteBeer.getId())
+                        .userEmail(favoriteBeer.getUserEmail())
+                        .beerId(favoriteBeer.getBeerId())
+                        .drunkBefore(favoriteBeer.isDrunkBefore())
+                        .whereTasted(favoriteBeer.getWhere())
+                        .whenTasted(favoriteBeer.getWhen())
+                        .tasteNote(favoriteBeer.getTasteNote())
+                        .comments(favoriteBeer.getComments())
                         .build())
                 .jsonBeerDetails(JsonBeerDetails.builder()
                         .id(jsonBeer.getId())
@@ -38,9 +38,9 @@ public class Builder {
                         .build())
                 .build();
 
-        assert jsonFavoriteBeer.getJsonBeerDetails().getId() >0;
-        assert  jsonFavoriteBeer.getJsonReview().getUserEmail() !=null;
+        assert jsonFavoriteBeerResponse.getJsonBeerDetails().getId() >0;
+        assert  jsonFavoriteBeerResponse.getJsonFavoriteBeer().getUserEmail() !=null;
 
-        return jsonFavoriteBeer;
+        return jsonFavoriteBeerResponse;
     }
 }

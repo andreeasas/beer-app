@@ -1,7 +1,7 @@
 package com.asas.beerapp.client.proxy;
 
+import com.asas.beerapp.beerapp.api.JsonFavoriteBeerResponse;
 import com.asas.beerapp.beerapp.api.JsonFavoriteBeer;
-import com.asas.beerapp.beerapp.api.JsonReview;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.ws.rs.*;
@@ -18,10 +18,10 @@ public interface FavoriteBeerController {
     @GET
     @Produces(APPLICATION_JSON_VALUE)
     @Path("{email}")
-    List<JsonFavoriteBeer> fetchFavoritesByEmail(@PathParam("email") String email);
+    List<JsonFavoriteBeerResponse> fetchFavoritesByEmail(@PathParam("email") String email);
 
     @POST
     @Consumes(APPLICATION_JSON_VALUE)
-    void insertNewReview(@RequestBody JsonReview jsonReview);
+    void insertNewReview(@RequestBody JsonFavoriteBeer jsonFavoriteBeer);
 
 }

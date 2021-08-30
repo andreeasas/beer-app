@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"beerId", "userEmail"})})
-public class BeerReview implements Serializable {
+public class FavoriteBeer implements Serializable {
 
     @Id
     @GeneratedValue
@@ -35,7 +35,7 @@ public class BeerReview implements Serializable {
     private int tasteNote;
     private String comments;
 
-    public BeerReview() {
+    public FavoriteBeer() {
     }
 
     public long getId() {
@@ -102,7 +102,7 @@ public class BeerReview implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BeerReview that = (BeerReview) o;
+        FavoriteBeer that = (FavoriteBeer) o;
         return id == that.id && beerId == that.beerId && userEmail.equals(that.userEmail);
     }
 

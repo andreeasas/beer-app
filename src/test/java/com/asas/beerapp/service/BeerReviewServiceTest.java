@@ -1,8 +1,8 @@
 package com.asas.beerapp.service;
 
 import com.asas.beerapp.util.BeerReviewSamples;
-import com.asas.beerapp.model.BeerReview;
-import com.asas.beerapp.repository.BeerReviewRepository;
+import com.asas.beerapp.model.FavoriteBeer;
+import com.asas.beerapp.repository.FavoriteBeerRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,7 +18,7 @@ import static org.mockito.BDDMockito.given;
 class BeerReviewServiceTest {
 
     @Mock
-    private BeerReviewRepository reviewRepository;
+    private FavoriteBeerRepository reviewRepository;
 
     @InjectMocks
     private BeerReviewService reviewService;
@@ -30,14 +30,14 @@ class BeerReviewServiceTest {
     @Test
     void shouldInsertBeerReview() {
         // given
-        BeerReview beerReview = BeerReviewSamples.createReviewWithRating(defaultEmail, defaultBeerId, defaultTasteNote);
-        given(reviewRepository.save(any(BeerReview.class))).willReturn(beerReview);
+        FavoriteBeer favoriteBeer = BeerReviewSamples.createReviewWithRating(defaultEmail, defaultBeerId, defaultTasteNote);
+        given(reviewRepository.save(any(FavoriteBeer.class))).willReturn(favoriteBeer);
 
         // when
-        BeerReview insertBeerReview = reviewService.insertBeerReview(beerReview);
+        FavoriteBeer insertFavoriteBeer = reviewService.insertBeerReview(favoriteBeer);
 
         // then
-        assertThat(insertBeerReview).isEqualTo(beerReview);
+        assertThat(insertFavoriteBeer).isEqualTo(favoriteBeer);
     }
 
 }

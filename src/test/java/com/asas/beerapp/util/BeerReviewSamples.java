@@ -1,8 +1,6 @@
 package com.asas.beerapp.util;
 
-import com.asas.beerapp.model.BeerReview;
-
-import java.time.LocalDate;
+import com.asas.beerapp.model.FavoriteBeer;
 
 public class BeerReviewSamples {
 
@@ -14,24 +12,24 @@ public class BeerReviewSamples {
 
     public static final int defaultTasteNote = 4;
 
-    public static BeerReview createReviewNotDrunk(String email, long beerId) {
-        BeerReview beerReview = new BeerReview();
-        beerReview.setUserEmail(email);
-        beerReview.setBeerId(beerId);
-        beerReview.setDrunkBefore(false);
-        return beerReview;
+    public static FavoriteBeer createReviewNotDrunk(String email, long beerId) {
+        FavoriteBeer favoriteBeer = new FavoriteBeer();
+        favoriteBeer.setUserEmail(email);
+        favoriteBeer.setBeerId(beerId);
+        favoriteBeer.setDrunkBefore(false);
+        return favoriteBeer;
     }
 
-    public static BeerReview createReviewWithRating(String email, long beerId, int tasteNote) {
-        BeerReview beerReview = new BeerReview();
-        beerReview.setUserEmail(email);
-        beerReview.setBeerId(beerId);
-        beerReview.setDrunkBefore(true);
+    public static FavoriteBeer createReviewWithRating(String email, long beerId, int tasteNote) {
+        FavoriteBeer favoriteBeer = new FavoriteBeer();
+        favoriteBeer.setUserEmail(email);
+        favoriteBeer.setBeerId(beerId);
+        favoriteBeer.setDrunkBefore(true);
 //        beerReview.setWhen(LocalDate.now());
-        beerReview.setWhere("UK");
-        beerReview.setTasteNote(tasteNote);
-        beerReview.setComments("It was pretty ok for a dinner.");
-        return beerReview;
+        favoriteBeer.setWhere("UK");
+        favoriteBeer.setTasteNote(tasteNote);
+        favoriteBeer.setComments("It was pretty ok for a dinner.");
+        return favoriteBeer;
     }
 
 }
