@@ -1,0 +1,66 @@
+<div class="card my-5">
+  <div class="card-body">
+
+    <div class="search-grid-container">
+      <div class="search-column">
+        <input type="text" class="form-control" placeholder="Search by email"
+               style="width: 300px" [(ngModel)]="userEmail"/>
+      </div>
+      <div class="search-column">
+        <button (click)="onSearch()" class="btn btn-primary">
+          Search
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class>
+  <h4>My favorites</h4>
+  <ul class="list">
+    <li class="column" *ngFor="let favorite of favoriteBeers">
+
+      <div class="card my-5">
+        <div class="card-body">
+
+          <div class="fix-with-scroll">
+            <b>{{ favorite.jsonBeerDetails.name}}</b>
+            <div>
+              <label><strong>description:</strong></label> {{ favorite.jsonBeerDetails.description }}
+            </div>
+            <div>
+              <label><strong>food pairings:</strong></label>
+              <tr *ngFor="let food of favorite.jsonBeerDetails.foodPairings">
+                <td>{{ food }}</td>
+              </tr>
+            </div>
+          </div>
+
+          <div class="card my-5">
+            <b>review</b>
+            <div>
+              <label><strong>drunk before:</strong></label> {{ favorite.jsonFavoriteBeer.drunkBefore }}
+            </div>
+            <div>
+              <label><strong>where tasted:</strong></label> {{ favorite.jsonFavoriteBeer.whereTasted }}
+            </div>
+            <!--            <div>-->
+            <!--              <label><strong>when tasted:</strong></label> {{ favorite.jsonReview.whenTasted }}-->
+            <!--            </div>-->
+            <div>
+              <label><strong>taste note:</strong></label> {{ favorite.jsonFavoriteBeer.tasteNote }}
+            </div>
+            <div>
+              <label><strong>comments:</strong></label> {{ favorite.jsonFavoriteBeer.comments }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </li>
+  </ul>
+</div>
+

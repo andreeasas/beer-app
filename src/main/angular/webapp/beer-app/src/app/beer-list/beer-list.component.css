@@ -1,0 +1,30 @@
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+}
+
+.input-w label, .input-w input {
+  float: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.btn-info{
+  float: right;
+}
+
+
+.search-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.search-column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
