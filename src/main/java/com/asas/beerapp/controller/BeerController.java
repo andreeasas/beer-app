@@ -84,7 +84,7 @@ public class BeerController {
         JsonBeer[] jsonBeers = restTemplate.getForObject(PUNKAPI_URL + queryParams, JsonBeer[].class);
         assert jsonBeers != null;
         String[] ids = Arrays.stream(jsonBeers).map(jsonBeer -> ""+(long)jsonBeer.getId()).toArray(value -> new String[value]);
-        logger.log(Level.INFO, "retrieved beers for params "+queryParams+ " = "+ids);
+        logger.log(Level.INFO, "retrieved beers for params "+queryParams+ " = "+ids.toString());
         return Arrays.asList(jsonBeers);
     }
 

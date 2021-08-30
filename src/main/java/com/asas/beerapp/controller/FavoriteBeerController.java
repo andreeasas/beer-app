@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,7 @@ public class FavoriteBeerController {
     public void insertNewReview(@RequestBody JsonFavoriteBeer jsonFavoriteBeer) {
         FavoriteBeer favoriteBeer = buildBeerReview(jsonFavoriteBeer);
         beerReviewService.insertBeerReview(favoriteBeer);
-        logger.log(Level.INFO, "save favorite beer "+ jsonFavoriteBeer.getBeerId());
+        logger.log(Level.INFO, "save favorite beer "+ jsonFavoriteBeer.getBeerId()+ " for user with email "+jsonFavoriteBeer.getUserEmail());
     }
 
     @RequestMapping(
@@ -74,6 +75,7 @@ public class FavoriteBeerController {
             jsonFavoriteBeerResponses.add(favoriteBeer);
         });
 
+        logger.log(Level.INFO, "get favorites for user with email "+email+" retrieved beers with ids "+ids);
         return jsonFavoriteBeerResponses;
     }
 
