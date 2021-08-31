@@ -1,10 +1,7 @@
 package com.asas.beerapp.model;
 
-import org.springframework.lang.Nullable;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;

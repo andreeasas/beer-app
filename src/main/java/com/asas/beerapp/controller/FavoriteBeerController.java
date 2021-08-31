@@ -1,21 +1,22 @@
 package com.asas.beerapp.controller;
 
-import com.asas.beerapp.beerapp.api.JsonFavoriteBeerResponse;
 import com.asas.beerapp.beerapp.api.JsonFavoriteBeer;
+import com.asas.beerapp.beerapp.api.JsonFavoriteBeerResponse;
 import com.asas.beerapp.model.FavoriteBeer;
 import com.asas.beerapp.punkapi.JsonBeer;
 import com.asas.beerapp.service.BeerReviewService;
-import io.swagger.annotations.ApiParam;
 import io.swagger.v3.oas.annotations.Operation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -51,9 +52,19 @@ public class FavoriteBeerController {
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public void insertNewReview(@RequestBody JsonFavoriteBeer jsonFavoriteBeer) {
-        FavoriteBeer favoriteBeer = buildBeerReview(jsonFavoriteBeer);
-        beerReviewService.insertBeerReview(favoriteBeer);
-        logger.log(Level.INFO, "save favorite beer " + jsonFavoriteBeer.getBeerId() + " for user with email " + jsonFavoriteBeer.getUserEmail());
+        try {
+            FavoriteBeer favoriteBeer = buildBeerReview(jsonFavoriteBeer);
+            beerReviewService.insertBeerReview(favoriteBeer);
+            logger.log(Level.INFO, "save favorite beer " + jsonFavoriteBeer.getBeerId() + " for user with email " + jsonFavoriteBeer.getUserEmail());
+        } catch (DataIntegrityViolationException e) {
+            logger.log(Level.ERROR, e.getMessage());
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT, "Beer " + jsonFavoriteBeer.getBeerId() + " is already saved as favorite", e);
+        } catch (IllegalArgumentException e) {
+            logger.log(Level.ERROR, e.getMessage());
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "Invalid data", e);
+        }
     }
 
     @Operation(summary = "Get favorite beers by user email")
@@ -64,6 +75,9 @@ public class FavoriteBeerController {
     )
     public List<JsonFavoriteBeerResponse> fetchFavoritesByEmail(@PathVariable("email") String email) {
         List<FavoriteBeer> favoriteBeers = beerReviewService.selectAllReviewsByEmail(email);
+        if (favoriteBeers.isEmpty()) {
+            logger.log(Level.INFO, "user with email " + email + " has no favorite beer");
+        }
         List<String> beerIds = favoriteBeers.stream().map(beerReview -> beerReview.getBeerId() + "").collect(Collectors.toList());
         String ids = String.join("|", beerIds);
 

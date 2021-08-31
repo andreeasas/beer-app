@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FavoriteBeerResponse } from '../model/favorite-beer-response';
-import { Observable, of, Subject, Subscription, forkJoin } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {FavoriteBeerResponse} from '../model/favorite-beer-response';
+import {Observable} from 'rxjs';
 import {BeerReview} from "../model/beer-review";
 
 @Injectable({
@@ -20,6 +20,6 @@ export class FavoriteBeerService {
   }
 
   public save(beerReview: BeerReview) {
-    return this.http.post<BeerReview>(this.favoritesUrl, beerReview);
+      return this.http.post<BeerReview>(this.favoritesUrl, beerReview);
   }
 }
