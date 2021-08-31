@@ -4,7 +4,7 @@ import com.asas.beerapp.beerapp.api.JsonFavoriteBeer;
 import com.asas.beerapp.beerapp.api.JsonFavoriteBeerResponse;
 import com.asas.beerapp.model.FavoriteBeer;
 import com.asas.beerapp.punkapi.JsonBeer;
-import com.asas.beerapp.service.BeerReviewService;
+import com.asas.beerapp.service.FavoriteBeerService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -36,13 +36,13 @@ public class FavoriteBeerController {
 
     private Logger logger = LogManager.getLogger(FavoriteBeerController.class);
 
-    private final BeerReviewService beerReviewService;
+    private final FavoriteBeerService favoriteBeerService;
 
     private final BeerController beerController;
 
     @Autowired
-    public FavoriteBeerController(BeerReviewService beerReviewService, BeerController beerController) {
-        this.beerReviewService = beerReviewService;
+    public FavoriteBeerController(FavoriteBeerService favoriteBeerService, BeerController beerController) {
+        this.favoriteBeerService = favoriteBeerService;
         this.beerController = beerController;
     }
 
@@ -54,7 +54,7 @@ public class FavoriteBeerController {
     public void insertNewReview(@RequestBody JsonFavoriteBeer jsonFavoriteBeer) {
         try {
             FavoriteBeer favoriteBeer = buildBeerReview(jsonFavoriteBeer);
-            beerReviewService.insertBeerReview(favoriteBeer);
+            favoriteBeerService.insertBeerReview(favoriteBeer);
             logger.log(Level.INFO, "save favorite beer " + jsonFavoriteBeer.getBeerId() + " for user with email " + jsonFavoriteBeer.getUserEmail());
         } catch (DataIntegrityViolationException e) {
             logger.log(Level.ERROR, e.getMessage());
@@ -74,7 +74,7 @@ public class FavoriteBeerController {
             path = "{email}"
     )
     public List<JsonFavoriteBeerResponse> fetchFavoritesByEmail(@PathVariable("email") String email) {
-        List<FavoriteBeer> favoriteBeers = beerReviewService.selectAllReviewsByEmail(email);
+        List<FavoriteBeer> favoriteBeers = favoriteBeerService.selectAllReviewsByEmail(email);
         if (favoriteBeers.isEmpty()) {
             logger.log(Level.INFO, "user with email " + email + " has no favorite beer");
         }

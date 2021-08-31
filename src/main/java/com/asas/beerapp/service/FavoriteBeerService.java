@@ -16,14 +16,14 @@ import java.util.List;
 
 @Validated
 @Service
-public class BeerReviewService {
+public class FavoriteBeerService {
 
-    private Logger logger = LogManager.getLogger(BeerReviewService.class);
+    private Logger logger = LogManager.getLogger(FavoriteBeerService.class);
 
     private FavoriteBeerRepository favoriteBeerRepository;
 
     @Autowired
-    public BeerReviewService(FavoriteBeerRepository favoriteBeerRepository) {
+    public FavoriteBeerService(FavoriteBeerRepository favoriteBeerRepository) {
         this.favoriteBeerRepository = favoriteBeerRepository;
     }
 

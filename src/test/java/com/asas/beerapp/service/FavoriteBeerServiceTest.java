@@ -15,13 +15,13 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
-class BeerReviewServiceTest {
+class FavoriteBeerServiceTest {
 
     @Mock
     private FavoriteBeerRepository reviewRepository;
 
     @InjectMocks
-    private BeerReviewService reviewService;
+    private FavoriteBeerService reviewService;
 
     @Test
     void selectAllReviewsByEmail() {
