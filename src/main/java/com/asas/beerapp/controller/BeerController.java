@@ -42,6 +42,9 @@ public class BeerController {
 
     private static final String PUNKAPI_URL = "https://api.punkapi.com/v2/beers";
 
+
+    // TODO - IMPORTANT: the response should send an object containing the JsonBeer. In case that other details should be added, the api is broken.
+
     @Operation(summary = "Get all beers")
     @RequestMapping(
             method = RequestMethod.GET,
