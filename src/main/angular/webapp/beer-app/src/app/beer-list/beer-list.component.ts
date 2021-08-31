@@ -42,6 +42,7 @@ export class BeerListComponent implements OnInit {
   searchByCriteria() {
     this.beerService.findByCriteria(this.beerSearchCriteria).subscribe(data => {
       this.beers = data;
+      this.currentIndex = -1;
     });
   }
 
