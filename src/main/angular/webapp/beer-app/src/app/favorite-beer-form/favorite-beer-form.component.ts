@@ -8,10 +8,10 @@ import {DisplayFieldErrorComponent} from "../display-field-error/display-field-e
 
 @Component({
   selector: 'app-favorite-beer-form',
-  templateUrl: './beer-review-form.component.html',
-  styleUrls: ['./beer-review-form.component.css']
+  templateUrl: './favorite-beer-form.component.html',
+  styleUrls: ['./favorite-beer-form.component.css']
 })
-export class BeerReviewFormComponent implements OnInit {
+export class FavoriteBeerFormComponent implements OnInit {
 
   beerReview: BeerReview;
 
