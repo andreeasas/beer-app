@@ -3,20 +3,20 @@
 BEER APP DETAILS:
 
 Backend:
-    - java
-    - run BeerAppApplication
+    - java <br />
+    - run BeerAppApplication <br />
 
 Frontend: 
-    - angular 
-    - before running app:
-        src/main/angular > npm install -g @angular/cli
-        src/main/angular > npm install
-    - run frontend app:
-        src/main/angular/webapp/beer-app/src/app > ng serve --open
+    - angular <br />
+    - before running app: <br />
+        src/main/angular > npm install -g @angular/cli <br />
+        src/main/angular > npm install <br />
+    - run frontend app: <br />
+        src/main/angular/webapp/beer-app/src/app > ng serve --open <br />
 
-Logging: 
-    - logs are saved in .logs folder
+Logging: <br />
+    - logs are saved in .logs folder <br />
 
-Api documentation: 
-    - run the spring boot application and browse http://localhost:8080/swagger-ui.html
+Api documentation: <br />
+    - run the spring boot application and browse http://localhost:8080/swagger-ui.html <br />
 
