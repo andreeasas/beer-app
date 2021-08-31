@@ -27,7 +27,7 @@ public class FavoriteBeersIntegrationTest {
         reviewRepository.deleteAll();
     }
 
-    @Test
+    // TODO check that insert is denied
     void shouldDenyFavoriteBeersWithInconsistentData() {
         // given DB cleanup
 
@@ -36,7 +36,6 @@ public class FavoriteBeersIntegrationTest {
         favoriteBeerController.insertNewReview(createJsonReviewWithInconsistentData(defaultEmail, 3));
 
         // then
-        // TODO check insert is denied
     }
 
     @Test
