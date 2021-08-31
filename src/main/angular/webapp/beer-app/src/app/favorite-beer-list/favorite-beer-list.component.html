@@ -40,20 +40,25 @@
 
           <div class="card my-5">
             <b>review</b>
-            <div>
-              <label><strong>drunk before:</strong></label> {{ favorite.jsonFavoriteBeer.drunkBefore }}
+            <div *ngIf="favorite.jsonFavoriteBeer.drunkBefore === true">
+              <label><strong>tasted before</strong></label>
             </div>
-            <div>
-              <label><strong>where tasted:</strong></label> {{ favorite.jsonFavoriteBeer.whereTasted }}
+            <div *ngIf="favorite.jsonFavoriteBeer.drunkBefore === false">
+              <label><strong>not tasted</strong></label>
             </div>
-            <!--            <div>-->
-            <!--              <label><strong>when tasted:</strong></label> {{ favorite.jsonReview.whenTasted }}-->
-            <!--            </div>-->
-            <div>
-              <label><strong>taste note:</strong></label> {{ favorite.jsonFavoriteBeer.tasteNote }}
-            </div>
-            <div>
-              <label><strong>comments:</strong></label> {{ favorite.jsonFavoriteBeer.comments }}
+            <div *ngIf="favorite.jsonFavoriteBeer.drunkBefore === true">
+              <div>
+                <label><strong>where tasted:</strong></label> {{ favorite.jsonFavoriteBeer.whereTasted }}
+              </div>
+              <!--            <div>-->
+              <!--              <label><strong>when tasted:</strong></label> {{ favorite.jsonReview.whenTasted }}-->
+              <!--            </div>-->
+              <div>
+                <label><strong>taste note:</strong></label> {{ favorite.jsonFavoriteBeer.tasteNote }}
+              </div>
+              <div>
+                <label><strong>comments:</strong></label> {{ favorite.jsonFavoriteBeer.comments }}
+              </div>
             </div>
           </div>
 

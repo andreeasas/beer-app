@@ -22,7 +22,7 @@ public class FavoriteBeer implements Serializable {
     @Email
     private String userEmail;
 
-    @NotBlank
+    @NotNull
     private long beerId;
 
     private boolean drunkBefore;
