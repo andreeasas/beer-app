@@ -14,7 +14,7 @@ export class BeerService {
   private readonly beersUrl: string;
 
   constructor(private http: HttpClient) {
-    this.beersUrl = 'http://localhost:8080/api.beer.app/beers';
+    this.beersUrl = '/api.beer.app/beers';
   }
 
   public findAll(): Observable<Beer[]> {

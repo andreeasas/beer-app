@@ -2,9 +2,12 @@
 
 BEER APP DETAILS:
 
-    - http://beerapp001snapshot-env-2.eba-rkwqzkgm.eu-central-1.elasticbeanstalk.com/api.beer.app/beers <br />
-    - http://beerapp001snapshot-env-2.eba-rkwqzkgm.eu-central-1.elasticbeanstalk.com/#/beers <br />
+The application is deployed on AWS Elastic Beanstalk.
 
+- http://beerapp002snapshot-env.eba-srf2uycr.eu-central-1.elasticbeanstalk.com/#/ <br />
+- ( for backend responses - http://beerapp002snapshot-env.eba-srf2uycr.eu-central-1.elasticbeanstalk.com/api.beer.app/beers)
+
+<br />
 Deploying the app:
 
    1. Build Angular frontend
