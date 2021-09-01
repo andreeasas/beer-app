@@ -12,7 +12,7 @@ export class FavoriteBeerService {
   private readonly favoritesUrl: string;
 
   constructor(private http: HttpClient) {
-    this.favoritesUrl = 'http://localhost:8080/api.beer.app/favorites';
+    this.favoritesUrl = '/api.beer.app/favorites';
   }
 
   public findByEmail(userEmail: string): Observable<FavoriteBeerResponse[]> {
