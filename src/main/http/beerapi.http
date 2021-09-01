@@ -49,6 +49,7 @@ Content-Type: application/json
 #--header 'Content-Type: application/json'
 #--data-raw '{}'
 GET http://localhost:8080/api.beer.app/beers
+#GET http://beerapp001snapshot-env-2.eba-rkwqzkgm.eu-central-1.elasticbeanstalk.com/api.beer.app/beers
 Content-Type: application/json
 
 {}
@@ -71,6 +72,7 @@ Content-Type: application/json
 #      "comments":"It was ok for a dinner."
 #}'
 POST http://localhost:8080/api.beer.app/favorites
+#POST http://beerapp001snapshot-env-2.eba-rkwqzkgm.eu-central-1.elasticbeanstalk.com/api.beer.app/favorites
 Content-Type: application/json
 
 {
