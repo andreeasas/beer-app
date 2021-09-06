@@ -1,0 +1,14 @@
+
+.textarea-label
+{
+  display: block;
+}
+
+.textarea-label textarea
+{
+  border-style: solid;
+  margin: 0;
+  outline: 0 none;
+  padding: 0;
+  width: 100%;
+}
