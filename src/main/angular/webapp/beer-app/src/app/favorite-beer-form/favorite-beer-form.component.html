@@ -3,16 +3,23 @@
     <form (ngSubmit)="onSubmit()" #beerReviewForm="ngForm">
 
       <div class="form-group">
-        <label for="userEmail">Email</label>
-        <input type="text" [(ngModel)]="beerReview.userEmail"
+        <label for="userEmail">Email*</label>
+        <input type="email" [(ngModel)]="beerReview.userEmail"
                class="form-control"
                id="userEmail"
                name="userEmail"
                placeholder="Enter your email address"
-               required #userEmail="ngModel">
-        <div [hidden]="!userEmail.pristine" class="alert alert-danger">Email is required</div>
+               required email #userEmail="ngModel">
       </div>
-
+      <div style="color:red"
+           *ngIf="userEmail.errors && (userEmail.dirty || userEmail.touched)">
+        <p *ngIf="userEmail.errors.required">
+          Email is required
+        </p>
+        <p *ngIf="userEmail.errors.email">
+          Email is invalid
+        </p>
+      </div>
 
       <div class="card my-5">
         <div class="card-body">
@@ -20,43 +27,66 @@
 
           <div class="form-group">
             <label for="drunkBefore">Have you drunk this beer before?</label><br>
-            <input type="checkbox" [(ngModel)]="beerReview.drunkBefore" id="drunkBefore" name="drunkBefore">
+            <input type="checkbox" [(ngModel)]="beerReview.drunkBefore" id="drunkBefore" name="drunkBefore"
+                   ngModel #tasted>
           </div>
 
           <div class="form-group">
-            <label for="whereTasted">Where have you tasted it?</label>
+            <label for="whereTasted">Where have you tasted it?*</label>
             <input type="text" [(ngModel)]="beerReview.whereTasted"
                    class="form-control"
                    id="whereTasted"
                    name="whereTasted"
-                   placeholder="Munchen">
+                   placeholder="Munchen"
+                   required minlength="2" #location="ngModel"
+                   [disabled]="!tasted.checked">
+          </div>
+          <div style="color:red"
+               *ngIf="location.errors && (location.dirty || location.touched)">
+            <p *ngIf="location.errors.minlength">
+              The location must have at least 2 letters
+            </p>
           </div>
 
-<!--          <div class="form-group">-->
-<!--            <label for="whenTasted">When have you tasted it?</label>-->
-<!--            <input type=date [(ngModel)]="beerReview.whenTasted"-->
-<!--                   class="form-control"-->
-<!--                   id="whenTasted"-->
-<!--                   name="whenTasted"-->
-<!--                   placeholder="05/01/2021">-->
-<!--          </div>-->
+          <!--          <div class="form-group">-->
+          <!--            <label for="whenTasted">When have you tasted it?</label>-->
+          <!--            <input type=date [(ngModel)]="beerReview.whenTasted"-->
+          <!--                   class="form-control"-->
+          <!--                   id="whenTasted"-->
+          <!--                   name="whenTasted"-->
+          <!--                   placeholder="05/01/2021">-->
+          <!--          </div>-->
 
           <div class="form-group">
-            <label for="tasteNote">Your taste note (1 to 5)</label>
+            <label for="tasteNote">Your taste note (1 to 5)*</label>
             <input type="number" [(ngModel)]="beerReview.tasteNote"
                    class="form-control"
                    id="tasteNote"
                    name="tasteNote"
-                   placeholder="4">
+                   placeholder="4"
+                   required min="1" max="5" #note="ngModel"
+                   [disabled]="!tasted.checked">
+          </div>
+          <div style="color:red"
+               *ngIf="note.errors && (note.dirty || note.touched)">
+            <p *ngIf="note.errors.min || note.errors.max">
+              Taste note must be between 1 and 5
+            </p>
           </div>
 
-          <div class="form-group">
-            <label for="comments">Your comments</label>
-            <input type="text" [(ngModel)]="beerReview.comments"
-                   class="form-control"
-                   id="comments"
-                   name="comments"
-                   placeholder="It was ok for a dinner.">
+          <div id="wrap">
+            <label for="comments">Your comments*</label>
+            <div class="textarea-label">
+              <textarea rows="3"
+                        [(ngModel)]="beerReview.comments"
+                        class="form-control"
+                        id="comments"
+                        name="comments"
+                        placeholder="It was ok for a dinner."
+                        required
+                        [disabled]="!tasted.checked">
+              </textarea>
+            </div>
           </div>
 
         </div>
