@@ -40,3 +40,5 @@ workflows:
               only:
                 - master
                 - release_1
+    jobs:
+      - build-and-test
