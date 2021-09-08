@@ -21,9 +21,6 @@ public class ClientProxyConfig {
     @Value("${resteasy.favorites.api.url}")
     private String favoriteBeersEndpointUrl;
 
-    @Value("${resteasy.reviews.api.url}")
-    private String reviewsEndpointUrl;
-
     @Bean
     public BeerController getBeerController() {
         // Network communication between the client and server is handled by HttpClient from the Apache HttpComponents.
@@ -41,13 +38,6 @@ public class ClientProxyConfig {
         ResteasyClient client = (ResteasyClient) ResteasyClientBuilder.newClient();
         ResteasyWebTarget target = client.target(favoriteBeersEndpointUrl);
         return target.proxy(FavoriteBeerController.class);
-    }
-
-    @Bean
-    public BeerReviewResource getBeerReviewResource() {
-        ResteasyClient client = (ResteasyClient) ResteasyClientBuilder.newClient();
-        ResteasyWebTarget target = client.target(reviewsEndpointUrl);
-        return target.proxy(BeerReviewResource.class);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.asas.beerapp.beerapp.api;
 
+import com.asas.beerapp.model.FavoriteBeer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -39,4 +40,17 @@ public class JsonFavoriteBeer {
     private LocalDate whenTasted;
     private int tasteNote;
     private String comments;
+
+    public FavoriteBeer toFavoriteBeer() {
+       return FavoriteBeer.builder()
+                .userEmail(this.getUserEmail())
+                .beerId(this.beerId)
+                .drunkBefore(this.drunkBefore)
+                .where(this.whereTasted)
+                .when(this.whenTasted)
+                .tasteNote(this.tasteNote)
+                .comments(this.comments)
+                .build();
+    }
+
 }

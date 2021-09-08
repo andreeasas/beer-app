@@ -27,15 +27,15 @@ public class FavoriteBeerService {
         this.favoriteBeerRepository = favoriteBeerRepository;
     }
 
-    public List<FavoriteBeer> selectAllReviews() {
+    public List<FavoriteBeer> selectAllFavoriteBeers() {
         return favoriteBeerRepository.findAll(Sort.by(Sort.Direction.ASC, "beerId"));
     }
 
-    public List<FavoriteBeer> selectAllReviewsByEmail(String email) {
+    public List<FavoriteBeer> selectFavoriteBeersByEmail(String email) {
         return favoriteBeerRepository.findByUserEmail(email);
     }
 
-    public FavoriteBeer insertBeerReview(FavoriteBeer favoriteBeer) {
+    public FavoriteBeer insertFavoriteBeer(FavoriteBeer favoriteBeer) {
         // TODO check for inconsistent data - e.g. whereTasted should not be set if drunkBefore is false
 //        boolean reviewDetailsAdded = favoriteBeer.getWhere() != null || favoriteBeer.getWhen() != null
 //                || favoriteBeer.getTasteNote() != 0;
@@ -54,12 +54,12 @@ public class FavoriteBeerService {
         }
     }
 
-    public void updateBeerReview(FavoriteBeer favoriteBeer) {
+    public void updateFavoriteBeer(FavoriteBeer favoriteBeer) {
         favoriteBeerRepository.findById(favoriteBeer.getId()).orElseThrow(() -> new NotFoundException("Beer review " + favoriteBeer.getId() + " not found"));
         favoriteBeerRepository.save(favoriteBeer);
     }
 
-    public void removeBeerReview(long id) {
+    public void removeFavoriteBeer(long id) {
         favoriteBeerRepository.findById(id).orElseThrow(() -> new NotFoundException("Beer review " + id + " not found"));
         favoriteBeerRepository.deleteById(id);
     }

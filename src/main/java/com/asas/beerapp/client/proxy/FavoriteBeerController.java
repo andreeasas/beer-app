@@ -18,10 +18,10 @@ public interface FavoriteBeerController {
     @GET
     @Produces(APPLICATION_JSON_VALUE)
     @Path("{email}")
-    List<JsonFavoriteBeerResponse> fetchFavoritesByEmail(@PathParam("email") String email);
+    List<JsonFavoriteBeerResponse> fetchFavoriteBeersByEmail(@PathParam("email") String email);
 
     @POST
     @Consumes(APPLICATION_JSON_VALUE)
-    void insertNewReview(@RequestBody JsonFavoriteBeer jsonFavoriteBeer);
+    void insertFavoriteBeer(@RequestBody JsonFavoriteBeer jsonFavoriteBeer);
 
 }

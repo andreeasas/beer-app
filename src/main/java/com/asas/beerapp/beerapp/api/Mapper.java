@@ -2,22 +2,13 @@ package com.asas.beerapp.beerapp.api;
 
 import com.asas.beerapp.model.FavoriteBeer;
 import com.asas.beerapp.punkapi.JsonBeer;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class Builder {
+import java.io.File;
 
-    public static FavoriteBeer buildBeerReview(JsonFavoriteBeer jsonFavoriteBeer) {
-        FavoriteBeer favoriteBeer = new FavoriteBeer();
-        favoriteBeer.setUserEmail(jsonFavoriteBeer.getUserEmail());
-        favoriteBeer.setBeerId(jsonFavoriteBeer.getBeerId());
-        favoriteBeer.setDrunkBefore(jsonFavoriteBeer.isDrunkBefore());
-        favoriteBeer.setWhere(jsonFavoriteBeer.getWhereTasted());
-        favoriteBeer.setWhen(jsonFavoriteBeer.getWhenTasted());
-        favoriteBeer.setTasteNote(jsonFavoriteBeer.getTasteNote());
-        favoriteBeer.setComments(jsonFavoriteBeer.getComments());
-        return favoriteBeer;
-    }
+public class Mapper {
 
-    public static JsonFavoriteBeerResponse buildFavoriteBeer(FavoriteBeer favoriteBeer, JsonBeer jsonBeer) {
+    public static JsonFavoriteBeerResponse buildFavoriteBeerResponse(FavoriteBeer favoriteBeer, JsonBeer jsonBeer) {
         JsonFavoriteBeerResponse jsonFavoriteBeerResponse = JsonFavoriteBeerResponse.builder()
                 .jsonFavoriteBeer(JsonFavoriteBeer.builder()
                         .id(favoriteBeer.getId())

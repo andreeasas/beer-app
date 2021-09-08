@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static com.asas.beerapp.util.JsonSamples.*;
+import static com.asas.beerapp.util.JsonFavoriteBeerSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
@@ -20,11 +20,11 @@ public class FavoriteBeersIntegrationTest {
     private FavoriteBeerController favoriteBeerController;
 
     @Autowired
-    private FavoriteBeerRepository reviewRepository; // for cleanup only
+    private FavoriteBeerRepository favoriteBeerRepository; // for cleanup only
 
     @AfterEach
     void tearDown() {
-        reviewRepository.deleteAll();
+        favoriteBeerRepository.deleteAll();
     }
 
     // TODO check that insert is denied
@@ -32,8 +32,8 @@ public class FavoriteBeersIntegrationTest {
         // given DB cleanup
 
         // when
-        favoriteBeerController.insertNewReview(createJsonReviewWithoutMandatoryFields());
-        favoriteBeerController.insertNewReview(createJsonReviewWithInconsistentData(defaultEmail, 3));
+        favoriteBeerController.insertFavoriteBeer(createJsonFavoriteBeerWithoutMandatoryFields());
+        favoriteBeerController.insertFavoriteBeer(createJsonFavoriteBeerWithInconsistentData(defaultEmail, 3));
 
         // then
     }
@@ -43,26 +43,26 @@ public class FavoriteBeersIntegrationTest {
         // given DB cleanup
 
         // when
-        favoriteBeerController.insertNewReview(createJsonReviewNotDrunk(defaultEmail, 1));
-        favoriteBeerController.insertNewReview(createJsonReviewWithRating(defaultEmail, 2, 5));
+        favoriteBeerController.insertFavoriteBeer(createJsonFavoriteBeerNotDrunk(defaultEmail, 1));
+        favoriteBeerController.insertFavoriteBeer(createJsonFavoriteBeerWithRating(defaultEmail, 2, 5));
 
         // then
-        List<JsonFavoriteBeerResponse> jsonFavoriteBeerResponses = favoriteBeerController.fetchFavoritesByEmail(defaultEmail);
+        List<JsonFavoriteBeerResponse> jsonFavoriteBeerResponses = favoriteBeerController.fetchFavoriteBeersByEmail(defaultEmail);
         assertThat(jsonFavoriteBeerResponses.size()).isEqualTo(2);
     }
 
     @Test
     void shouldFetchFavoriteBeersByUserEmail() {
         // given
-        favoriteBeerController.insertNewReview(createJsonReviewNotDrunk(defaultEmail, 1));
-        favoriteBeerController.insertNewReview(createJsonReviewNotDrunk(defaultEmail, 2));
-        favoriteBeerController.insertNewReview(createJsonReviewNotDrunk(secondEmail, 1));
-        favoriteBeerController.insertNewReview(createJsonReviewNotDrunk(secondEmail, 2));
-        favoriteBeerController.insertNewReview(createJsonReviewNotDrunk(thirdEmail, 1));
-        favoriteBeerController.insertNewReview(createJsonReviewNotDrunk(thirdEmail, 2));
+        favoriteBeerController.insertFavoriteBeer(createJsonFavoriteBeerNotDrunk(defaultEmail, 1));
+        favoriteBeerController.insertFavoriteBeer(createJsonFavoriteBeerNotDrunk(defaultEmail, 2));
+        favoriteBeerController.insertFavoriteBeer(createJsonFavoriteBeerNotDrunk(secondEmail, 1));
+        favoriteBeerController.insertFavoriteBeer(createJsonFavoriteBeerNotDrunk(secondEmail, 2));
+        favoriteBeerController.insertFavoriteBeer(createJsonFavoriteBeerNotDrunk(thirdEmail, 1));
+        favoriteBeerController.insertFavoriteBeer(createJsonFavoriteBeerNotDrunk(thirdEmail, 2));
 
         // when
-        List<JsonFavoriteBeerResponse> jsonFavoriteBeerResponses = favoriteBeerController.fetchFavoritesByEmail(defaultEmail);
+        List<JsonFavoriteBeerResponse> jsonFavoriteBeerResponses = favoriteBeerController.fetchFavoriteBeersByEmail(defaultEmail);
 
         //then
         assertThat(jsonFavoriteBeerResponses.size()).isEqualTo(2);

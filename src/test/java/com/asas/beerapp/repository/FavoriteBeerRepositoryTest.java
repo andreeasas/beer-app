@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.List;
 
-import static com.asas.beerapp.util.BeerReviewSamples.*;
+import static com.asas.beerapp.util.FavoriteBeerSamples.*;
 
 @DataJpaTest
 class FavoriteBeerRepositoryTest {

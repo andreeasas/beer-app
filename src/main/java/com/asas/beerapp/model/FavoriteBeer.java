@@ -1,14 +1,19 @@
 package com.asas.beerapp.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"beerId", "userEmail"})})
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class FavoriteBeer implements Serializable {
 
     @Id
@@ -22,92 +27,23 @@ public class FavoriteBeer implements Serializable {
     @NotNull
     private long beerId;
 
+    @EqualsAndHashCode.Exclude
     private boolean drunkBefore;
 
+    @EqualsAndHashCode.Exclude
     @Column(name = "where_tasted")
     private String where;
 
+    @EqualsAndHashCode.Exclude
     @Column(name = "when_tasted")
     private LocalDate when;
 
+    @EqualsAndHashCode.Exclude
     //    @Min(1)
     //    @Max(5)
     private int tasteNote;
+
+    @EqualsAndHashCode.Exclude
     private String comments;
 
-    public FavoriteBeer() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public long getBeerId() {
-        return beerId;
-    }
-
-    public void setBeerId(long beerId) {
-        this.beerId = beerId;
-    }
-
-    public boolean isDrunkBefore() {
-        return drunkBefore;
-    }
-
-    public void setDrunkBefore(boolean drunkBefore) {
-        this.drunkBefore = drunkBefore;
-    }
-
-    public String getWhere() {
-        return where;
-    }
-
-    public void setWhere(String where) {
-        this.where = where;
-    }
-
-    public void setWhen(LocalDate when) {
-        this.when = when;
-    }
-
-    public LocalDate getWhen() {
-        return when;
-    }
-
-    public int getTasteNote() {
-        return tasteNote;
-    }
-
-    public void setTasteNote(int tasteNote) {
-        this.tasteNote = tasteNote;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FavoriteBeer that = (FavoriteBeer) o;
-        return id == that.id && beerId == that.beerId && userEmail.equals(that.userEmail);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, userEmail, beerId);
-    }
 }

@@ -23,8 +23,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static com.asas.beerapp.beerapp.api.Builder.buildBeerReview;
-import static com.asas.beerapp.beerapp.api.Builder.buildFavoriteBeer;
+import static com.asas.beerapp.beerapp.api.Mapper.buildFavoriteBeerResponse;
 
 @Validated
 @RestController
@@ -51,10 +50,10 @@ public class FavoriteBeerController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    public void insertNewReview(@RequestBody JsonFavoriteBeer jsonFavoriteBeer) {
+    public void insertFavoriteBeer(@RequestBody JsonFavoriteBeer jsonFavoriteBeer) {
         try {
-            FavoriteBeer favoriteBeer = buildBeerReview(jsonFavoriteBeer);
-            favoriteBeerService.insertBeerReview(favoriteBeer);
+            FavoriteBeer favoriteBeer = jsonFavoriteBeer.toFavoriteBeer();
+            favoriteBeerService.insertFavoriteBeer(favoriteBeer);
             logger.log(Level.INFO, "save favorite beer " + jsonFavoriteBeer.getBeerId() + " for user with email " + jsonFavoriteBeer.getUserEmail());
         } catch (DataIntegrityViolationException e) {
             logger.log(Level.ERROR, e.getMessage());
@@ -74,7 +73,7 @@ public class FavoriteBeerController {
             path = "{email}"
     )
     public List<JsonFavoriteBeerResponse> fetchFavoritesByEmail(@PathVariable("email") String email) {
-        List<FavoriteBeer> favoriteBeers = favoriteBeerService.selectAllReviewsByEmail(email);
+        List<FavoriteBeer> favoriteBeers = favoriteBeerService.selectFavoriteBeersByEmail(email);
         if (favoriteBeers.isEmpty()) {
             logger.log(Level.INFO, "user with email " + email + " has no favorite beer");
         }
@@ -89,7 +88,7 @@ public class FavoriteBeerController {
         favoriteBeers.forEach(beerReview -> {
             JsonBeer jsonBeer = beers.get(beerReview.getBeerId());
 
-            JsonFavoriteBeerResponse favoriteBeer = buildFavoriteBeer(beerReview, jsonBeer);
+            JsonFavoriteBeerResponse favoriteBeer = buildFavoriteBeerResponse(beerReview, jsonBeer);
             jsonFavoriteBeerResponses.add(favoriteBeer);
         });
 
