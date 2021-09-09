@@ -4,8 +4,8 @@ BEER APP DETAILS:
 
 The application is deployed on AWS Elastic Beanstalk.
 
-- http://beerapp002snapshot-env.eba-srf2uycr.eu-central-1.elasticbeanstalk.com/#/ <br />
-- ( for backend responses - http://beerapp002snapshot-env.eba-srf2uycr.eu-central-1.elasticbeanstalk.com/api.beer.app/beers)
+- http://beerappbeanstalk-env.eba-yk3fqqwu.eu-central-1.elasticbeanstalk.com/#/ <br />
+- ( for backend responses - http://beerappbeanstalk-env.eba-yk3fqqwu.eu-central-1.elasticbeanstalk.com/api.beer.app/beers)
 
 <br />
 Deploying the app:
