@@ -1,0 +1,40 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+      nodejs: latest
+    commands:
+      - echo $PWD
+      - ls -a
+      - echo Installing source NPM dependencies...
+      - cd src/main/angular
+      - npm install -g @angular/cli
+      - cd webapp/beer-app
+      - ls -a
+      - npm install
+      - cd ../../../../../
+
+  build:
+    commands:
+      - echo Build Angular frontend
+      - cd src/main/angular/webapp/beer-app
+      - ng build
+      - echo Copy Angular files from dist/beer-app folder to backend
+      - cd ../../../../../
+      - cd src/main/resources/
+      - mkdir public
+      - cd public
+      - echo $PWD
+      - rm -rf ./*
+      - cp -r ../../angular/webapp/beer-app/dist/beer-app/. .
+      - ls -a
+      - cd ../../../../
+      - echo $PWD
+      - rm -rf /target
+      - ls -a
+      - mvn clean
+      - mvn install
+      - ls -a
+      - cp target/beer-app-0.0.1-SNAPSHOT.jar .
