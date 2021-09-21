@@ -38,3 +38,5 @@ phases:
       - mvn install
       - ls -a
       - cp target/beer-app-0.0.1-SNAPSHOT.jar .
+      - echo $PWD
+      - ls -a
