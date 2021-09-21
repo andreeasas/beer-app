@@ -28,8 +28,9 @@ phases:
       - cd public
       - echo $PWD
       - rm -rf ./*
-      - cp -r ../../angular/webapp/beer-app/dist/beer-app/. .
+      - cp -r ../../angular/webapp/beer-app/dist/beer-app/* .
       - ls -a
+      - echo Build and run backend project
       - cd ../../../../
       - echo $PWD
       - rm -rf /target
