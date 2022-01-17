@@ -53,7 +53,7 @@ public class BeerController {
     public List<JsonBeer> getAllBeers() {
         JsonBeer[] jsonBeers = restTemplate.getForObject(PUNKAPI_URL, JsonBeer[].class);
         assert jsonBeers != null;
-        logger.log(Level.INFO, "get all beers ");
+        logger.log(Level.INFO, "get all beers " + jsonBeers.length);
         return Arrays.asList(jsonBeers);
     }
 
@@ -110,7 +110,7 @@ public class BeerController {
 
         JsonBeer[] jsonBeers = restTemplate.getForObject(PUNKAPI_URL + queryParams, JsonBeer[].class);
         assert jsonBeers != null;
-        String[] ids = Arrays.stream(jsonBeers).map(jsonBeer -> "" + (long) jsonBeer.getId()).toArray(value -> new String[value]);
+        String[] ids = Arrays.stream(jsonBeers).map(jsonBeer -> "" + jsonBeer.getId()).toArray(String[]::new);
         logger.log(Level.INFO, "retrieved beers for params " + queryParams + " = " + Arrays.toString(ids));
         return Arrays.asList(jsonBeers);
     }
