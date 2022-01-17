@@ -36,8 +36,8 @@ phases:
       - rm -rf /target
       - ls -a
       - mvn clean
-      - mvn install
-      - ls -a
-      - cp target/beer-app-0.0.1-SNAPSHOT.jar .
-      - echo $PWD
-      - ls -a
+      - mvn package
+
+artifacts:
+  files:
+    - target/beer-app-0.0.1-SNAPSHOT.jar
